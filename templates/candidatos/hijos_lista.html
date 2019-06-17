@@ -1,0 +1,26 @@
+{% for hijo in hijos %}
+  <tr>
+    <td class="text-center">{{ hijo.hijo_nombre}}</td>
+    <td class="text-center" >{{ hijo.hijo_ocupacion }}</td>
+    <td class="text-center" >{{ hijo.hijo_edad }}</td>
+    <td class="text-center" >{{ hijo.hijo_tel }}</td>
+    <td class="text-center" >
+    <button type="button"
+              onclick="edit_hijo({{hijo.id}})"
+              class="btn btn-warning btn-sm "
+              data-url="">
+        <span class="glyphicon glyphicon-pencil"></span> Editar
+      </button>
+      <button type="button"
+              class="btn btn-danger btn-sm btnDelete"
+              data-id="{{hijo.id}}"
+              data-reg="HIJO">
+      <span class="glyphicon glyphicon-trash"></span> Borrar
+    </button>
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="7" class="text-center bg-warning">No existen hijos agregados</td>
+  </tr>
+{% endfor %}

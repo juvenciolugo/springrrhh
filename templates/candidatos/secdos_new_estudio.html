@@ -1,0 +1,178 @@
+<!-- Agregar  ESTUDIO -->
+<div class="modal fade" id="addEstudioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" id="mdialTamanio2" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">AGREGAR ESTUDIO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+              <form class="form-horizontal" id="frm_secdos_addestudios" method="post" role="form" action="{% url 'add-estudio' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input id="candId2_est" name="candId2_est" type="hidden" value="">                
+
+                <div class="modal-body">
+                        *Los campos enmarcados en rojo son obligatorios               
+
+                    
+                  <div class="form-group row">
+                    <div class="col-lg-3">
+                        <label>{{ form_estudio.estudios_tipo.label }}</label>
+                        {{ form_estudio.estudios_tipo }} 
+                    </div>
+                    <div class="col-lg-4">
+                      <label>{{ form_estudio.estudios_escuela.label }}</label>
+                      {{ form_estudio.estudios_escuela }} 
+                    </div>
+                   
+                    <div class="col-lg-2">
+                     <label>{{ form_estudio.estudios_annios.label }}</label>
+                     {{ form_estudio.estudios_annios }}
+                    </div>
+                    
+
+                   <div class="col-lg-3">
+                    <label>{{ form_estudio.estudios_documento.label }}</label>
+                    {{ form_estudio.estudios_documento }}
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                  <div class="col-lg-3">
+                      <label>{{ form_estudio.estudios_inicio.label }}</label>
+                    <div class="input-group date inicio">
+                     <span class="input-group-addon" style="pointer-events:none"><i class="fa fa-calendar"></i></span>
+                     {{ form_estudio.estudios_inicio }}
+                    </div>
+                   </div>
+                   <div class="col-lg-3">
+                      <label>{{ form_estudio.estudios_termino.label }}</label>
+                    <div class="input-group date termino">
+                     <span class="input-group-addon" style="pointer-events:none"><i class="fa fa-calendar"></i></span>
+                     {{ form_estudio.estudios_termino }}
+                    </div>
+                   </div>
+                   <div class="col-lg-6">
+                      <label>{{ form_estudio.estudios_nombre.label }}</label>
+                      {{ form_estudio.estudios_nombre }} 
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                    
+                    <div class="col-lg-5">
+                    <label>{{ form_estudio.estudios_tesis.label }}</label>
+                    {{ form_estudio.estudios_tesis }}
+                    </div>
+                    <div class="col-lg-4">
+                      <label>{{ form_estudio.estudios_forma.label }}</label>
+                      {{ form_estudio.estudios_forma }}
+                      </div>
+                    <div class="col-lg-3">
+                    <label>{{ form_estudio.estudios_cedula.label }}</label>
+                    {{ form_estudio.estudios_cedula }}
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btn_add_estudio" class="btn btn-primary">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End of agregar ESTUDIO modal-->
+
+<!-- EDITAR  ESTUDIO -->
+<div class="modal fade" id="editEstudioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" id="mdialTamanio2" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">EDITAR ESTUDIO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+              <form class="form-horizontal" id="frm_secdos_edit_estudios" method="post" role="form" action="{% url 'edit-estudio' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input id="est_id" name="est_id" type="hidden" value="">     
+                  
+                <div class="modal-body">
+                    *Los campos enmarcados en rojo son obligatorios               
+
+                    
+                    <div class="form-group row">
+                      <div class="col-lg-3">
+                          <label>{{ form_editestudio.estudios_tipo.label }}</label>
+                          {{ form_editestudio.estudios_tipo }} 
+                      </div>
+                      <div class="col-lg-4">
+                        <label>{{ form_editestudio.estudios_escuela.label }}</label>
+                        {{ form_editestudio.estudios_escuela }} 
+                      </div>
+                     
+                      <div class="col-lg-2">
+                       <label>{{ form_editestudio.estudios_annios.label }}</label>
+                       {{ form_editestudio.estudios_annios }}
+                      </div>
+                      
+  
+                     <div class="col-lg-3">
+                      <label>{{ form_editestudio.estudios_documento.label }}</label>
+                      {{ form_editestudio.estudios_documento }}
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                    <div class="col-lg-3">
+                        <label>{{ form_editestudio.estudios_inicio.label }}</label>
+                      <div class="input-group date inicio">
+                       <span class="input-group-addon" style="pointer-events:none"><i class="fa fa-calendar"></i></span>
+                       {{ form_editestudio.estudios_inicio }}
+                      </div>
+                     </div>
+                     <div class="col-lg-3">
+                        <label>{{ form_editestudio.estudios_termino.label }}</label>
+                      <div class="input-group date termino">
+                       <span class="input-group-addon" style="pointer-events:none"><i class="fa fa-calendar"></i></span>
+                       {{ form_editestudio.estudios_termino }}
+                      </div>
+                     </div>
+                     <div class="col-lg-6">
+                        <label>{{ form_editestudio.estudios_nombre.label }}</label>
+                        {{ form_editestudio.estudios_nombre }} 
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                      
+                      <div class="col-lg-5">
+                      <label>{{ form_editestudio.estudios_tesis.label }}</label>
+                      {{ form_editestudio.estudios_tesis }}
+                      </div>
+                      <div class="col-lg-4">
+                        <label>{{ form_editestudio.estudios_forma.label }}</label>
+                        {{ form_editestudio.estudios_forma }}
+                        </div>
+                      <div class="col-lg-3">
+                      <label>{{ form_editestudio.estudios_cedula.label }}</label>
+                      {{ form_estudio.estudios_cedula }}
+                      </div>
+                    </div>    
+
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btn_edit_est" class="btn btn-primary">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End of EDITAR ESTUDIO modal-->
+
+
+

@@ -1,0 +1,239 @@
+{% load staticfiles %}
+{% load querys %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+{% block head %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSPINIA | Empty Page</title>
+
+    <link rel="icon" type="image/png" href="{% static 'img/icono-springlabs.png' %}" />
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+{% endblock head %}
+<script>
+    function myFunction(){
+        if (localStorage) 
+            localStorage["aviso"]= 'True';
+        document.location.href = "/portafolio/";
+        return false;
+    };
+    function myFunction2(){
+        if (localStorage) 
+            localStorage["aviso"]= 'True';
+        document.location.href = "/porta-emp/";
+        return false;
+    };
+</script>
+
+</head>
+
+<body class="">
+
+    <div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+{% block datos_profile %}
+    <li class="nav-header">
+        <div class="dropdown profile-element"> <span>
+                {% if foto == 0 %}
+                
+                    <img alt="image" class="img-circle" src="{% static 'img/no_image.png' %}" />
+                {% else %}
+                
+                    <img alt="image" class="img-circle" src="{{user.empleado.foto.url}}" height="165" width="165"/>
+                {% endif %}
+                 </span>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{user.first_name}} {{user.last_name}}</strong>
+                 </span> <span class="text-muted text-xs block">
+
+                 {% if request.user|has_group:"Administrador" %}
+
+                    Administrador
+
+                 {% else %}
+                    {% if request.user|has_group:"RRHH" %}
+
+                        Recursos Humanos
+                    {% else %}
+                        {% if profesion %}
+                           {% if profesion.carrera != None %}
+                              {{profesion.carrera}}
+                           {% else %}
+                              <label>Profesión:</label> Sin Definir
+                           {% endif %}
+                        {% else %}
+                           Perfil en construcción
+                        {% endif %}
+                    {% endif %}
+
+                 {% endif %}
+
+                 </span> </span> </a>
+            <!--<ul class="dropdown-menu animated fadeInRight m-t-xs">
+                <li><a href="">Perfil</a></li>
+                <li class="divider"></li>
+                <li><a href="{% url 'logout' %}">Salir</a></li>
+            </ul>-->
+        </div>
+        <div class="logo-element">
+            RH+
+        </div>
+    </li>
+{% endblock datos_profile %}
+                {% block menu_lateral_header %}
+                    {% if request.user|has_group:"Administrador" %}
+                    <li id="home"><a href="/sadmin/" aria-expanded="false">
+                        <i class="fa fa-home"></i>
+                        <span class="nav-label">Inicio</span>
+                        </a>
+                    </li>
+                    <li id="porta"><a href="/portafolio/" class="miporta" aria-expanded="false">
+                        <i class="fa fa-briefcase"></i>
+                        <span class="nav-label">Mi Portafolio</span>
+                        </a>
+                    </li>
+                    <li id="emp"><a href="/empLst/" aria-expanded="false">
+                        <i class="fa fa-users"></i>
+                        <span class="nav-label">Empleados</span>
+                        </a>
+                    </li>
+
+                    {% elif request.user|has_group:"Empleados" %}
+                    <li id="home_emp"><a href="/cola-home/" aria-expanded="false">
+                        <i class="fa fa-home"></i>
+                        <span class="nav-label">Inicio</span>
+                        </a>
+                    </li>
+                    <li id="act_datos"><a href="#" onclick="myFunction2();" aria-expanded="false">
+                        <i class="fa fa-briefcase"></i>
+                        <span class="nav-label">Mi portafolio</span>
+                        </a>
+                    </li>
+                        
+                    {% elif request.user|has_group:"RRHH" %}
+                       
+                        <li id="home_rrhh"><a href="/rrhh/"  class="miporta" aria-expanded="false">
+                            <i class="fa fa-home"></i>
+                            <span class="nav-label">Inicio RRHH</span>
+                            </a>
+                        </li>
+                        <li id="porta"><a href="#" onclick="myFunction();" aria-expanded="false">
+                            <i class="fa fa-briefcase"></i>
+                            <span class="nav-label">Mi Portafolio</span>
+                            </a>
+                        </li>
+                        <li id="can"><a href="/candLst/" aria-expanded="false">
+                            <i class="fa fa-user-plus"></i>
+                            <span class="nav-label">Candidatos</span>
+                            </a>
+                        </li>
+                        <li id="emp"><a href="/empLst/" aria-expanded="false">
+                            <i class="fa fa-users"></i>
+                            <span class="nav-label">Empleados</span>
+                            </a>
+                        </li>
+
+                    {% endif %}
+                {% endblock menu_lateral_header %}
+            </ul>
+        </div>
+    </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="search_results.html">
+                <div class="form-group">
+                    <input type="text" placeholder="Expandir / Contraer" class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
+        </div>
+        
+        
+            <ul class="nav navbar-top-links navbar-right">
+                
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Bienvenido a SpringRRHH</span>
+                </li>
+                
+
+                <li>
+                    <a href="{% url 'logout' %}">
+                        <i class="fa fa-sign-out"></i> Salir
+                    </a>
+                </li>
+            </ul>
+        
+        </nav>
+        </div>
+        {% block contenido_header %}
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>This is main title</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">This is</a>
+                        </li>
+                        <li class="active">
+                            <strong>Breadcrumb</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-sm-8">
+                    <div class="title-action">
+                        <a href="" class="btn btn-primary">This is action area</a>
+                    </div>
+                </div>
+            </div>
+        {% endblock contenido_header %}
+        {% block contenido %}
+        
+        {% endblock contenido %}
+            <div class="footer">
+                <div class="pull-right">
+                    <strong>Hoy </strong>{{user.last_login|date:"d M Y"}}
+                </div>
+                <div>
+                    <strong>Copyright</strong> SpringLabs &copy; 2019
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+    {% block js %}
+    <!-- Mainly scripts -->
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+    <script src="{% static 'js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="{% static 'js/inspinia.js' %}"></script>
+    <script src="{% static 'js/plugins/pace/pace.min.js' %}"></script>
+
+    {% endblock js %}
+
+    {% block scripts %}
+    
+    {% endblock scripts %}
+
+
+</body>
+
+</html>

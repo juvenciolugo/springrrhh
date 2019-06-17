@@ -1,0 +1,340 @@
+{% extends 'tags/empty_page.html' %}
+{% load staticfiles %}
+{% load querys %}
+{% load i18n %}
+{% load static  %}
+
+{% block head %}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SpringRH | Etapa 3</title>
+
+
+<link rel="icon" type="image/png" href="{% static 'img/icono-springlabs.png' %}" />
+
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/iCheck/custom.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/chosen/bootstrap-chosen.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/colorpicker/bootstrap-colorpicker.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/cropper/cropper.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/switchery/switchery.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/nouslider/jquery.nouislider.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/ionRangeSlider/ion.rangeSlider.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/clockpicker/clockpicker.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/daterangepicker/daterangepicker-bs3.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/select2/select2.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/dualListbox/bootstrap-duallistbox.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/animate.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/blueimp/css/blueimp-gallery.min.css' %}" rel="stylesheet">
+
+<style>
+    .error {
+        color: red;
+        font-family: Verdana;
+        font-size: 8pt;
+    }
+</style>
+{% endblock head %}
+
+{% block js %}
+
+<!-- Mainly scripts -->
+<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="{% static 'js/inspinia.js' %}"></script>
+<script src="{% static 'js/plugins/pace/pace.min.js' %}"></script>
+<script src="{% static 'js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+<!-- Chosen -->
+<script src="{% static 'js/plugins/chosen/chosen.jquery.js' %}"></script>
+
+<!-- JSKnob -->
+<script src="{% static 'js/plugins/jsKnob/jquery.knob.js' %}"></script>
+
+<!-- Input Mask-->
+<script src="{% static 'js/plugins/jasny/jasny-bootstrap.min.js' %}"></script>
+
+<!-- Data picker -->
+<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
+
+<!-- NouSlider -->
+<script src="{% static 'js/plugins/nouslider/jquery.nouislider.min.js' %}"></script>
+
+<!-- Switchery -->
+<script src="{% static 'js/plugins/switchery/switchery.js' %}"></script>
+
+<!-- IonRangeSlider -->
+<script src="{% static 'js/plugins/ionRangeSlider/ion.rangeSlider.min.js' %}"></script>
+
+<!-- iCheck -->
+<script src="{% static 'js/plugins/iCheck/icheck.min.js' %}"></script>
+
+<!-- MENU -->
+<script src="{% static 'js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+
+<!-- Color picker -->
+<script src="{% static 'js/plugins/colorpicker/bootstrap-colorpicker.min.js' %}"></script>
+
+<!-- Clock picker -->
+<script src="{% static 'js/plugins/clockpicker/clockpicker.js' %}"></script>
+
+<!-- Image cropper -->
+<script src="{% static 'js/plugins/cropper/cropper.min.js' %}"></script>
+
+<!-- Date range use moment.js same as full calendar plugin -->
+<script src="{% static 'js/plugins/fullcalendar/moment.min.js' %}"></script>
+
+<!-- Date range picker -->
+<script src="{% static 'js/plugins/daterangepicker/daterangepicker.js' %}"></script>
+
+<!-- Select2 -->
+<script src="{% static 'js/plugins/select2/select2.full.min.js' %}"></script>
+
+<!-- TouchSpin -->
+<script src="{% static 'js/plugins/touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
+
+<!-- Tags Input -->
+<script src="{% static 'js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js' %}"></script>
+
+<!-- Dual Listbox -->
+<script src="{% static 'js/plugins/dualListbox/jquery.bootstrap-duallistbox.js' %}"></script>
+
+<!-- blueimp gallery -->
+<script src="{% static 'js/plugins/blueimp/jquery.blueimp-gallery.min.js' %}"></script>
+<!-- Mis scripts -->
+<script src="{% static 'js/empleados/etapa_3.js' %}"></script>
+
+
+{% endblock js %}
+
+
+
+{% block contenido_header %}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2><strong>ETAPA 3</strong> Estado Civil</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="{% url 'home' %}">Inicio</a>
+            </li>
+            <li class="active">
+                <a href=""><strong>{{empleado.nombre}} {{empleado.apellido_paterno}}</strong></a>
+            </li>
+        </ol>
+    </div>
+</div>
+{% endblock contenido_header %}
+
+{% block contenido %}
+
+<div class="wrapper wrapper-content animated fadeIn">
+    <div id="status_sol" style="display:none;">{{ es_soltero }}</div>
+    <div id="status_casa" style="display:none;">{{ es_casado }}</div>
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <i class="fa fa-vcard-o"></i> <strong>Sección 1</strong>
+                </div>
+                <div class="panel-body">
+
+                    <!-- ######################################## INICIO DEL FORMULARIO ######################################## -->
+                    <form class="form-horizontal" method="post" role="form" action="" autocomplete="off"
+                        enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% if empleado.status == 4 %}
+                        <label>Estado Civil</label>
+                        {{ formEstadoCivil.estado_civil }}
+                        {% if es_soltero %}
+                        <div id="vista_1" style="display:none">
+                            {% else %}
+                            <div id="vista_1" style="display:block">
+                                {% endif %}
+
+                                <div class="form-group row">
+                                    <div class="col-lg-4">
+                                        <label>Nombre</label>*
+                                        {{ formConyugue.nombre }}
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label>Apellido Paterno</label>*
+                                        {{ formConyugue.apellido_paterno }}
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label>Apellido Materno</label>*
+                                        {{ formConyugue.apellido_materno }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-4">
+                                        <label>Fecha de Nac.</label>*
+                                        {{ formConyugue.fecha_nacimiento }}
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label>Acta Nacimiento</label>*
+                                        {{ formConyugue.acta_nacimiento }}
+                                    </div>
+                                    {% if es_casado %}
+                                    <div class="col-lg-4" id="matri" style="display:block">
+                                        {% else %}
+                                        <div class="col-lg-4" id="matri" style="display:none">
+                                            {% endif %}
+                                            <label>Acta Matrimonio</label>*
+                                            {{ formConyugue.acta }}
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-4">
+                                            <label>Teléfono</label>*
+                                            {{ formConyugue.tlf }}
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>email personal</label>*
+                                            {{ formConyugue.email }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-4">
+                                            <label>Profesión</label>*
+                                            {{ formConyugue.profesion }}
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>Lugar de trabajo</label>*
+                                            {{ formConyugue.lugar_de_trabajo }}
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>email del trabajo</label>*
+                                            {{ formConyugue.email_trabajo }}
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                {% else %}
+                                <strong>Estado civil: </strong>{{empleado.estado_civil}}<br>
+                                {% if conyugue_saved %}
+                                <strong>Cónyugue: </strong>
+                                {{conyugue_saved.nombre}}
+                                {{conyugue_saved.apellido_paterno}}
+                                {{conyugue_saved.apellido_materno}}<br>
+                                <strong>Fecha de nacimiento: </strong>
+                                {{conyugue_saved.fecha_nacimiento|date:"d M Y"}}<br>
+                                <strong>Profesión: </strong>
+                                {{conyugue_saved.profesion}}<br>
+                                <strong>Teléfono: </strong>
+                                {{conyugue_saved.tlf}}<br>
+                                <strong>Email: </strong>
+                                {{conyugue_saved.email}}<br>
+                                <strong>Email del trabajo: </strong>
+                                {{conyugue_saved.email_trabajo}}<br>
+                                <strong>Lugar de trabajo: </strong>
+                                {{conyugue_saved.lugar_de_trabajo}}<br>
+                                {% endif %}
+                                {% endif %}
+                                {% if empleado.status == 4 %}
+                                <div class="col-lg-12" id="btn_aceptar">
+                                    <button type="submit" class="btn btn-block btn-rounded btn-primary">Aceptar</button>
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% if empleado.status == 5 %}
+                            <div class="col-lg-12 text-center"><br>
+                                <a class="btn btn-success btn-rounded"
+                                    href="{% url 'rechaza3' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Editar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                <a class="btn btn-primary btn-rounded"
+                                    href="{% url 'confirma3' %}">&nbsp;&nbsp;Confirmar&nbsp;&nbsp;</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        {% if empleado.status == 5 %}
+
+        <div class="lightBoxGallery">
+
+            <div>
+
+                {% if conyugue_saved %}
+
+              
+
+                <div id="blueimp-gallery" class="blueimp-gallery">
+                    <div class="slides"></div>
+                    <h3 class="title"></h3>
+                    <a class="prev">‹</a>
+                    <a class="next">›</a>
+                    <a class="close">×</a>
+                    <a class="play-pause"></a>
+                    <ol class="indicator"></ol>
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+
+            {%else%}
+
+            {%endif%}
+
+
+            </form>
+
+
+            {% endblock contenido %}
+            {% block scripts %}
+            <script>
+                if (history.forward(1)) {
+                    location.replace(history.forward(1));
+                }
+                document.onkeydown = function (e) {
+                    tecla = (document.all) ? e.keyCode : e.which;
+                    // alert(tecla)
+                    if (tecla == 116) {
+                        return false;
+                    }
+                }
+            </script>
+
+            {% endblock scripts %}

@@ -1,0 +1,90 @@
+<!-- Agregar  HERMANO -->
+<div class="modal fade" id="addHermanoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog " id="mdialTamanio" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">AGREGAR HERMANO</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="form-horizontal" id="frm_sectres_hermanos" method="post" role="form" action="{% url 'add-hermanocv' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input id="candId3_hermano" name="candId3_hermano" type="hidden" value="">                
+        <div class="modal-body">
+            *Los campos enmarcados en rojo son obligatorios               
+          <div class="form-group row">
+            <div class="col-lg-3">
+              <label>{{ form_hermano.hermano_nombre.label }} </label>
+              {{ form_hermano.hermano_nombre }}
+            </div>
+            <div class="col-lg-3">
+              <label>{{ form_hermano.hermano_ocupacion.label }} </label>
+              {{ form_hermano.hermano_ocupacion }}
+            </div>
+            
+            <div class="col-lg-2">
+              <label>{{ form_hermano.hermano_edad.label }}</label>
+              {{ form_hermano.hermano_edad }}
+            </div>
+          </div>
+
+          
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="btn_add_hermano" class="btn btn-primary">Agregar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End of agregar HERMANO modal-->
+
+<!-- EDITAR  HERMANO -->
+<div class="modal fade" id="editHermanoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog " id="mdialTamanio" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">EDITAR HERMANO</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="form-horizontal" id="frm_sectres_edit_hermanos" method="post" role="form" action="{% url 'edit-hermanocv' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input id="hermano_id" name="hermano_id" type="hidden" value="">
+        <input id="candId_edithermano" name="candId_edithermano" type="hidden" value="">  
+        <div class="modal-body">
+            *Los campos enmarcados en rojo son obligatorios               
+          <div class="form-group row">
+            <div class="col-lg-5">
+              <label>{{ form_edithermano.hermano_nombre.label }} </label>
+              {{ form_edithermano.hermano_nombre }}
+            </div>
+            <div class="col-lg-3">
+              <label>{{ form_edithermano.hermano_ocupacion.label }} </label>
+              {{ form_edithermano.hermano_ocupacion }}
+            </div>
+            
+            <div class="col-lg-2">
+              <label>{{ form_edithermano.hermano_edad.label }}</label>
+              {{ form_edithermano.hermano_edad }}
+            </div>
+          </div>
+
+          
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="btn_edit_her" class="btn btn-primary">Actualizar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End of EDITAR HERMANO modal-->

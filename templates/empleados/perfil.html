@@ -1,0 +1,713 @@
+{% extends 'tags/empty_page.html' %}
+{% load staticfiles %}
+{% load querys %}
+
+{% block head %}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SpringRH | Perfil</title>
+
+<link rel="icon" type="image/png" href="{% static 'img/icono-springlabs.png' %}" />
+
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/toastr/toastr.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'js/plugins/gritter/jquery.gritter.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/animate.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/dropzone/basic.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/dropzone/dropzone.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/codemirror/codemirror.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/iCheck/custom.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/chosen/bootstrap-chosen.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/colorpicker/bootstrap-colorpicker.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/cropper/cropper.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/switchery/switchery.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/nouslider/jquery.nouislider.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/blueimp/css/blueimp-gallery.min.css' %}" rel="stylesheet">
+
+<style>
+    .error {
+        color: red;
+        font-family: Verdana;
+        font-size: 8pt;
+    }
+</style>
+
+{% endblock head %}
+
+{% block js %}
+
+<!-- Mainly scripts -->
+<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+<script src="{% static 'js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+<!-- Peity -->
+<script src="{% static 'js/plugins/peity/jquery.peity.min.js' %}"></script>
+<script src="{% static 'js/demo/peity-demo.js' %}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="{% static 'js/inspinia.js' %}"></script>
+
+<script src="{% static 'js/plugins/pace/pace.min.js' %}"></script>
+
+<!-- Sparkline -->
+<script src="{% static 'js/plugins/sparkline/jquery.sparkline.min.js' %}"></script>
+
+<!-- Sparkline demo data  -->
+<script src="{% static 'js/demo/sparkline-demo.js' %}"></script>
+
+<!-- Toastr -->
+<script src="{% static 'js/plugins/toastr/toastr.min.js' %}"></script>
+
+<!-- Jasny -->
+<script src="{% static 'js/plugins/jasny/jasny-bootstrap.min.js' %}"></script>
+
+<!-- DROPZONE -->
+<script src="{% static 'js/plugins/dropzone/dropzone.js' %}"></script>
+
+<!-- Chosen -->
+<script src="{% static 'js/plugins/chosen/chosen.jquery.js' %}"></script>
+
+<!-- JSKnob -->
+<script src="{% static 'js/plugins/jsKnob/jquery.knob.js' %}"></script>
+
+<!-- Data picker -->
+<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.es.min.js' %}"></script>
+
+<!-- NouSlider -->
+<script src="{% static 'js/plugins/nouslider/jquery.nouislider.min.js' %}"></script>
+
+<!-- Switchery -->
+<script src="{% static 'js/plugins/switchery/switchery.js' %}"></script>
+
+<!-- iCheck -->
+<script src="{% static 'js/plugins/iCheck/icheck.min.js' %}"></script>
+
+<!-- TouchSpin -->
+<script src="{% static 'js/plugins/touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
+
+<!-- Tags Input -->
+<script src="{% static 'js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js' %}"></script>
+
+<!-- blueimp gallery -->
+<script src="{% static 'js/plugins/blueimp/jquery.blueimp-gallery.min.js' %}"></script>
+
+<!-- Mis scripts -->
+<script src="{% static 'js/empleados/etapa_1.js' %}"></script>
+
+
+{% endblock js %}
+
+
+
+{% block contenido_header %}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Perfil {{empleado.nombre}} {{empleado.apellido_paterno}}</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="{% url 'home' %}">Inicio</a>
+            </li>
+            <li class="active">
+                <a href=""><strong>{{empleado.nombre}} {{empleado.apellido_paterno}}</strong></a>
+            </li>
+        </ol>
+    </div>
+    <!--         <div class="col-sm-8">
+            <div class="title-action">
+                <a href="" class="btn btn-primary">This is action area</a>
+            </div>
+        </div> -->
+</div>
+{% endblock contenido_header %}
+
+{% block contenido %}
+
+<div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <!-- INICIO ERRORES -->
+            {%if form.nombre.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Nombre: </strong> {{ form.nombre.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.apellido_paterno.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Apellido paterno: </strong> {{ form.apellido_paterno.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.apellido_materno.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Apellido materno: </strong> {{ form.apellido_materno.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.fecha_nacimiento.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Fecha de nacimiento: </strong> {{ form.fecha_nacimiento.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.nacionalidad.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Nacionalidad: </strong> {{ form.nacionalidad.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.pais_nacimiento.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>País de nacimiento: </strong> {{ form.pais_nacimiento.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.edad.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Edad: </strong> {{ form.edad.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.foto.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Foto: </strong> {{ form.foto.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.acta_nacimiento.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Acta de nacimiento: </strong> {{ form.acta_nacimiento.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.referencia.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Referencia: </strong> {{ form.referencia.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.tel.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Tel: </strong> {{ form.tel.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.tipo_documento_identidad.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Tipo de documento de identidad: </strong> {{ form.tipo_documento_identidad.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.docu_ident_front.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Documento de identidad imagen delantera: </strong> {{ form.docu_ident_front.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.docu_ident_back.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Documento de identidad imagen trasera: </strong> {{ form.docu_ident_back.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.pasaporte.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Pasaporte: </strong> {{ form.pasaporte.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.fecha_vencimiento_pasaporte.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Fecha de vencimiento del pasaporte: </strong>
+                {{ form.fecha_vencimiento_pasaporte.errors.as_text }}
+            </div>
+            {%endif%}
+
+            {%if form.imagen_pasaporte.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Imagen del pasaporte: </strong> {{ form.imagen_pasaporte.errors.as_text }}
+            </div>
+            {%endif%}
+
+
+            <!-- FIN ERRORES -->
+            {% if nacionalidades %}
+            <div class="alert alert-warning">
+                Por favor, revise que los datos introducidos sean correctos, de no ser así, corrija y confirme. En la
+                parte inferior se muestra un resumen de los documentos cargados, de haber algún error con alguno de
+                estos documentos, deberá cargarlo nuevamente.
+            </div>
+            {% endif %}
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <i class="fa fa-user-circle-o"></i> <strong>Datos Básicos</strong>
+                </div>
+                <div class="panel-body">
+                    <!-- ######################################## INICIO DEL FORMULARIO ######################################## -->
+                    <form class="form-horizontal" id="frm_perfil" method="post" role="form" action="" autocomplete="off"  enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <div class="col-lg-4">
+                                <label>Nombre</label>*
+                                {{ form.nombre }}
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Apellido Paterno</label>*
+                                {{ form.apellido_paterno }}
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Apellido Materno</label>*
+                                {{ form.apellido_materno }}
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="form-group row">
+                            <div class="col-lg-4">
+                                <label>Foto Actual</label>*
+                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                    <div class="form-control" data-trigger="fileinput">
+                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                        <span class="fileinput-filename"></span>
+                                    </div>
+                                    <span class="input-group-addon btn btn-default btn-file">
+                                        <span class="fileinput-new">Seleccionar</span>
+                                        <span class="fileinput-exists">Cambiar</span>
+                                        <!-- <input type="file" name="..."> -->
+                                        {{ form.foto }}
+                                    </span>
+                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists"
+                                        data-dismiss="fileinput">Remover</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4" id="data_1">
+                                <label>Fecha de Nacimiento</label>*
+                                <div class="input-group date">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <!-- <input type="text" class="form-control"> -->
+                                    {{ form.fecha_nacimiento }}
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Edad</label>*
+                                {{ form.edad }}
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-lg-4">
+                                <label>Teléfono</label>*
+                                {{ form.tel }}
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Celular</label>*
+                                {{ form.cel }}
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Email Personal</label>*
+                                {{ form.email_personal }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-2">
+                                <label>Tipo</label>
+                                {{ form.tipo }}
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Calle</label>*
+                                {{ form.calle }}
+                            </div>
+                            <div class="col-lg-2">
+                                <label>Num. Exterior</label>*
+                                {{ form.num_ext }}
+                            </div>
+                            <div class="col-lg-2">
+                                <label>Num. Interior</label>
+                                {{ form.num_int }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>Entre</label>*
+                                {{ form.calle_uno }}
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Y</label>*
+                                {{ form.calle_dos }}
+                            </div>
+                        </div>
+                        <div class="form-group row" id="tipo_c" style="display:none">
+                            <div class="col-lg-4">
+                                <label>Piso</label>
+                                {{ form.piso }}
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Depto</label>
+                                {{ form.depto }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-2">
+                                <label>CP</label>*
+                                {{ form.cp }}
+                            </div>
+                            <div class="col-lg-2">
+                                <label>Colonia</label>*
+                                {{ form.colonia }}
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Pais</label>
+                                {{ form.pais_direc }}
+                            </div>
+                            <div class="col-lg-4" style="display:none" id="esdo_div">
+                                <label>Estado</label>
+                                {{ form.esdo }}
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-8">
+                                <label>Referencia</label>*
+                                {{ form.referencia }}
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <i class="fa fa-file-pdf-o"></i> <strong>Nacionalidad</strong>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group row">
+                        <div class="col-lg-2">
+                            <label>País de nacimiento</label>
+                            {{ form.pais_nacimiento }}
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Acta de Nacimiento</label>*
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <!-- <input type="file" name="..."> -->
+                                    {{ form.acta_nacimiento }}
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists"
+                                    data-dismiss="fileinput">Remover</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="hr-line-dashed"></div> -->
+                    {% if nacionalidades %}
+
+                    <div class="form-group">
+
+                        <label>Nacionalidad</label>*
+
+                        <div class="chosen-container chosen-container-multi chosen-with-drop" style="width: 100%;"
+                            title="" id="id_nacionalidad_chosen">
+                            <ul class="chosen-choices">
+                                {% for i in nacionalidades %}
+                                <li class="search-choice">
+                                    <span>{{ i.pais }}</span><a class="search-choice-close"
+                                        data-option-array-index="{{ forloop.counter }}"></a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    {% else %}
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>Nacionalidad</label>
+                            {{ form.nacionalidad }}
+                            {% if nacionalidades %}
+
+                            {% for i in nacionalidades %}
+                            {{ i.pais }}&nbsp;
+                            {% endfor %}
+
+                            {%endif%}
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Documento de identificación</label>
+                            {{ form.tipo_documento_identidad }}
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+
+
+                    <div class="form-group row" id="cedine_">
+                        <div class="col-lg-6">
+                            <label>Frente</label>*
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <!-- <input type="file" name="..."> -->
+                                    {{ form.docu_ident_front }}
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists"
+                                    data-dismiss="fileinput">Remover</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Atrás</label>*
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <!-- <input type="file" name="..."> -->
+                                    {{ form.docu_ident_back }}
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists"
+                                    data-dismiss="fileinput">Remover</a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="pascheck">
+                            <label for="pascheck" class="form-check-label">Cuenta con Pasaporte</label>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- <div class="hr-line-dashed"></div> -->
+
+        <div class="col-lg-12" id="pass_" style="display:none">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <i class="fa fa-file-pdf-o"></i> <strong>Pasaporte</strong>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group row">
+                        <div class="col-lg-4">
+                            <label>Número de pasaporte</label>
+                            {{ form.pasaporte }}
+                        </div>
+                        <div class="col-lg-4" id="data_2">
+                            <label>Fecha de vencimiento</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <!-- <input type="text" class="form-control"> -->
+                                {{ form.fecha_vencimiento_pasaporte }}
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Imagen Pasaporte</label>
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Seleccionar</span>
+                                    <span class="fileinput-exists">Cambiar</span>
+                                    <!-- <input type="file" name="..."> -->
+                                    {{ form.imagen_pasaporte }}
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists"
+                                    data-dismiss="fileinput">Remover</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <i class="fa fa-male"></i> <strong>Extranjero</strong>
+                </div>
+                <div class="panel-body">
+                    <label>Extranjero:</label>
+                    {{ formSiNo.SiNo }}
+
+
+
+                    <div id="Si" style="display:none">
+                        <div class="form-group row">
+                            <div class="col-lg-2">
+                                <label>Fecha de llegada al país del trabajo</label>
+                                {{ formPreguntas.fecha_llegada }}
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Tengo permiso de trabajo vigente</label>
+                                {{ formPreguntas.permiso_trabajo }}
+                            </div>
+                            <div class="col-lg-4" id="sol_">
+                                <label>Ya solicité mi permiso de trabajo</label>
+                                {{ formPreguntas.solicitud_permiso_trabajo }}
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- ######################################## FIN DEL FORMULARIO ######################################## -->
+
+        {% if nacionalidades %}
+
+        <div class="lightBoxGallery">
+
+            <div>
+
+                <a href="{{user.empleado.foto.url}}" title="Foto pefil" data-gallery=""><img
+                        src="{{user.empleado.foto.url}}" height="165" width="165"></a>
+
+                <a href="{{user.empleado.acta_nacimiento.url}}" title="Acta de nacimiento" data-gallery=""><img
+                        src="{{user.empleado.acta_nacimiento.url}}" height="165" width="165"></a>
+
+                <a href="{{user.empleado.docu_ident_front.url}}" title="Documento de identidad imagen frontal"
+                    data-gallery=""><img src="{{user.empleado.docu_ident_front.url}}" height="165" width="165"></a>
+
+                <a href="{{user.empleado.docu_ident_back.url}}" title="Documento de identidad imagen trasera"
+                    data-gallery=""><img src="{{user.empleado.docu_ident_back.url}}" height="165" width="165"></a>
+                {% if user.empleado.imagen_pasaporte %}
+                <a href="{{user.empleado.imagen_pasaporte.url}}" title="Pasaporte" data-gallery=""><img
+                        src="{{user.empleado.imagen_pasaporte.url}}" height="165" width="165"></a>
+                {% endif %}
+
+                <div id="blueimp-gallery" class="blueimp-gallery">
+                    <div class="slides"></div>
+                    <h3 class="title"></h3>
+                    <a class="prev">‹</a>
+                    <a class="next">›</a>
+                    <a class="close">×</a>
+                    <a class="play-pause"></a>
+                    <ol class="indicator"></ol>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12">
+                <span>
+                    <br>
+                </span>
+            </div>
+            <div class="col-lg-12">
+                <a class="btn btn-success btn-rounded"
+                    href="{% url 'rechaza1' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Editar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                <a class="btn btn-primary btn-rounded"
+                    href="{% url 'confirma1' %}">&nbsp;&nbsp;Confirmar&nbsp;&nbsp;</a>
+            </div>
+            {%else%}
+            <div class="col-lg-12">
+                <button type="submit" id="btn_aceptar" class="btn btn-block btn-rounded btn-primary">Aceptar</button>
+            </div>
+            {%endif%}
+            <div class="col-lg-12">
+                <span>
+                    <br>
+                </span>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    {% endblock contenido %}
+
+    {% block scripts %}
+    <script>
+        if (history.forward(1)) {
+            location.replace(history.forward(1));
+        }
+        document.onkeydown = function (e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla == 116) {
+                return false;
+            }
+        }
+    </script>
+
+    {% endblock scripts %}

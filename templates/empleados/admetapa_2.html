@@ -1,0 +1,544 @@
+{% extends 'tags/empty_page.html' %}
+{% load staticfiles %}
+{% load querys %}
+
+{% block head %}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SpringRH | Perfil</title>
+
+<link rel="icon" type="image/png" href="{% static 'img/icono-springlabs.png' %}" />
+
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/toastr/toastr.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'js/plugins/gritter/jquery.gritter.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/animate.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/dropzone/basic.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/dropzone/dropzone.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/codemirror/codemirror.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/iCheck/custom.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/chosen/bootstrap-chosen.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/colorpicker/bootstrap-colorpicker.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/cropper/cropper.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/switchery/switchery.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/nouslider/jquery.nouislider.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/blueimp/css/blueimp-gallery.min.css' %}" rel="stylesheet">
+<style>
+    .error {
+        color: red;
+        font-family: Verdana;
+        font-size: 8pt;
+    }
+</style>
+{% endblock head %}
+
+{% block js %}
+
+<!-- Mainly scripts -->
+<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+<script src="{% static 'js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+<!-- Peity -->
+<script src="{% static 'js/plugins/peity/jquery.peity.min.js' %}"></script>
+<script src="{% static 'js/demo/peity-demo.js' %}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="{% static 'js/inspinia.js' %}"></script>
+
+<script src="{% static 'js/plugins/pace/pace.min.js' %}"></script>
+
+<!-- Sparkline -->
+<script src="{% static 'js/plugins/sparkline/jquery.sparkline.min.js' %}"></script>
+
+<!-- Sparkline demo data  -->
+<script src="{% static 'js/demo/sparkline-demo.js' %}"></script>
+
+<!-- Toastr -->
+<script src="{% static 'js/plugins/toastr/toastr.min.js' %}"></script>
+
+<!-- Jasny -->
+<script src="{% static 'js/plugins/jasny/jasny-bootstrap.min.js' %}"></script>
+
+<!-- DROPZONE -->
+<script src="{% static 'js/plugins/dropzone/dropzone.js' %}"></script>
+
+<!-- Chosen -->
+<script src="{% static 'js/plugins/chosen/chosen.jquery.js' %}"></script>
+
+<!-- JSKnob -->
+<script src="{% static 'js/plugins/jsKnob/jquery.knob.js' %}"></script>
+
+<!-- Data picker -->
+<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.es.min.js' %}"></script>
+
+<!-- NouSlider -->
+<script src="{% static 'js/plugins/nouslider/jquery.nouislider.min.js' %}"></script>
+
+<!-- Switchery -->
+<script src="{% static 'js/plugins/switchery/switchery.js' %}"></script>
+
+<!-- iCheck -->
+<script src="{% static 'js/plugins/iCheck/icheck.min.js' %}"></script>
+
+<!-- TouchSpin -->
+<script src="{% static 'js/plugins/touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
+
+<!-- Tags Input -->
+<script src="{% static 'js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js' %}"></script>
+
+<!-- blueimp gallery -->
+<script src="{% static 'js/plugins/blueimp/jquery.blueimp-gallery.min.js' %}"></script>
+
+<!-- Mis scripts -->
+<script src="{% static 'js/empleados/adm_etapa_2.js' %}"></script>
+
+
+{% endblock js %}
+
+
+{% block contenido_header %}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <h2>Perfil del empleado : {{usuario.first_name}} {{usuario.last_name}}</h2>
+    <h3>Etapa 2</h3>
+
+    <!--         <div class="col-sm-8">
+            <div class="title-action">
+                <a href="" class="btn btn-primary">This is action area</a>
+            </div>
+        </div> -->
+</div>
+{% endblock contenido_header %}
+
+{% block contenido %}
+
+<div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <!-- INICIO ERRORES -->
+            {%if form.visa_1.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Visa 1: </strong> {{ form.visa_1.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.visa_2.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Visa 2: </strong> {{ form.visa_2.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.visa_3.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Visa 3: </strong> {{ form.visa_3.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.visa_4.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Visa 4: </strong> {{ form.visa_4.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.visa_5.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Visa 5: </strong> {{ form.visa_5.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.vigencia_visa_1.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Vigencia visa 1: </strong> {{ form.vigencia_visa_1.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.vigencia_visa_2.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Vigencia visa 2: </strong> {{ form.vigencia_visa_2.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.vigencia_visa_3.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Vigencia visa 3: </strong> {{ form.vigencia_visa_3.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.vigencia_visa_4.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Vigencia visa 4: </strong> {{ form.vigencia_visa_4.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.vigencia_visa_5.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Vigencia visa 5: </strong> {{ form.vigencia_visa_5.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.img_visa_1.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Imagen visa 1: </strong> {{ form.img_visa_1.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.img_visa_2.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Imagen visa 2: </strong> {{ form.img_visa_2.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.img_visa_3.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Imagen visa 3: </strong> {{ form.img_visa_3.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.img_visa_4.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Imagen visa 4: </strong> {{ form.img_visa_4.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.img_visa_5.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Imagen visa 5: </strong> {{ form.img_visa_5.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.curp.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>CURP: </strong> {{ form.curp.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.imagen_curp.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Imagen CURP: </strong> {{ form.imagen_curp.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.rfc.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>RFC: </strong> {{ form.rfc.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.imagen_rfc.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Imagen RFC: </strong> {{ form.imagen_rfc.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.sat.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>SAT: </strong> {{ form.sat.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.imagen_sat.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Imagen SAT: </strong> {{ form.imagen_sat.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.infonavit.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>INFONAVIT: </strong> {{ form.infonavit.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.imagen_infonavit.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Imagen INFONAVIT: </strong> {{ form.imagen_infonavit.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.imss.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>IMSS: </strong> {{ form.imss.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.imagen_imss.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Imagen IMSS: </strong> {{ form.imagen_imss.errors.as_text }}
+            </div>
+            {%endif%}
+
+
+
+            <!-- FIN ERRORES -->
+            {% if nacionalidades %}
+            {% endif %}
+            <div class="container col-md-12" id="ok" style="display:none;">
+                <div class="alert alert-dismissable alert-success">
+                    <button type="button" class="close" data-dismiss="alert"></button>
+                    Datos Actualizados!!
+                </div>
+            </div>
+            <a href="{% url 'dashAdm' empleado.pk %}"><button class="btn btn-warning">Regresar a Etapas</button> </a>
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <i class="fa fa-user-circle-o"></i> <strong>Documentación</strong>
+                </div>
+                <div class="panel-body">
+                    <form id="frm_doc" method="POST" action="{% url 'update_doc' %}" role="form" autocomplete="off" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input id="userId" name="userId" type="hidden" value={{ empleado.pk }}>
+                        <div class="form-group" id="data_1">
+                            <div class="form-group row">
+                                <div class="form-group col-sm-4">
+                                    <label>CURP :</label>
+                                    {{ form.curp }}
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    <label>RFC :</label>
+                                    {{ form.rfc }}
+
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label>SAT: </label>
+                                    {{ form.sat }}
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="form-group col-sm-4">
+
+                                    <a href="{{empleado.imagen_curp.url}}" target="_blank">Ver / </a>
+                                    <a href="" target="_blank" class="imgcurp"> Cambiar</a>
+                                    <div id="img_curp" style="display:none">
+                                        {{ form.imagen_curp }}
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group col-sm-4">
+                                    <a href="{{empleado.imagen_rfc.url}}" target="_blank">Ver / </a>
+                                    <a href="" target="_blank" class="imgrfc"> Cambiar</a>
+                                    <div id="img_rfc" style="display:none">
+                                        {{ form.imagen_rfc }}
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group col-sm-4">
+                                    <a href="{{empleado.imagen_sat.url}}" target="_blank">Ver / </a>
+                                    <a href="" target="_blank" class="imgsat"> Cambiar</a>
+                                    <div id="img_sat" style="display:none">
+                                        {{ form.imagen_sat }}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="form-group col-sm-4">
+                                    <label>IMSS :</label>
+
+                                    {{ form.imss }}
+
+
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label>Infonavit :
+
+                                        {{ form.infonavit }}
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="form-group col-sm-4">
+                                    <a href="{{empleado.imagen_imss.url}}" target="_blank">Ver / </a>
+                                    <a href="" target="_blank" class="imgimss"> Cambiar</a>
+                                    <div id="img_imss" style="display:none">
+                                        {{ form.imagen_imss }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <a href="{{empleado.imagen_imss.url}}" target="_blank">Ver / </a>
+                                    <a href="" target="_blank" class="imginfonavit"> Cambiar</a>
+                                    <div id="img_infonavit" style="display:none">
+                                        {{ form.imagen_infonavit }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="form-group col-sm-4">
+                                    <label>Licencia :
+                                        {{ form.licencia_conducir }}
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label>Emitida en :
+                                        {{ form.estado_emision_licencia }}
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label>Vigente hasta :
+                                        {{ form.vigencia_licencia_conducir }}
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <label>Permanente :
+                                        {{ form.permanente }}
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <a href="{{lic.imagen_lic_anverso.url}}" target="_blank">Ver frente/ </a>
+                                    <a href="" target="_blank" class="imglicanv"> Cambiar</a><br>
+                                    <a href="{{lic.imagen_lic_reverso.url}}" target="_blank"> Ver atrás / </a>
+                                    <a href="" target="_blank" class="imglicrev"> Cambiar</a>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <div id="img_licanv" style="display:none">
+                                        {{ form.img_lic_anverso }}
+                                    </div>
+                                    <div id="img_licrev" style="display:none">
+                                        {{ form.img_lic_reverso }}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div id="btns" style="display:none;">
+                                <button type="button" id="btncanDoc" class="btn btn-success">Cancelar</button>
+                                <button type="button" id="btnactDoc" class="btn btn-primary">Actualizar</button>
+                            </div>
+
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+        <div class="container col-md-12" id="ok2" style="display:none;">
+            <div class="alert alert-dismissable alert-success">
+                <button type="button" class="close" data-dismiss="alert"></button>
+                Datos Actualizados!!
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <i class="fa fa-user-circle-o"></i> <strong>Visas</strong>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    {% if todas_visas %}
+                    
+                    {% for visa in todas_visas%}
+                    <form id="frm_vis_{{forloop.counter}}" name="frm_vis_{{forloop.counter}}" method="POST"
+                        action="{% url 'update_vis' %}" role="form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input id="visaId" name="visaId" type="hidden" value={{ visa.pk }}>
+                        <div class="form-group" id="data_2">
+                        
+
+                            <div><label> Visa {{forloop.counter}}</label></div>
+                            <div class="form-group row">
+
+                                <div class="form-group col-sm-3">
+
+                                    <label>País: </label>
+
+                                    {{formVisas.pais}}
+                                    
+                                    <input id="id_pais_{{forloop.counter}}" class="form-control _paisinput"
+                                        value="{{visa.pais}}" readonly="readonly">
+                                    <div id="btns_2" style="display:none">
+                                        <button type="button" id="btncanVis" class="btn btn-success">Cancelar</button>
+                                        <button type="submit" id="btnactVis"
+                                            class="btn btn-primary">Actualizar</button>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <label>Vigencia: </label>
+                                    <input id="id_fecha_vigencia" name="fecha_vigencia" class="form-control"
+                                        value="{{visa.fecha_vigencia|date:'d/m/Y'}}" readonly="readonly"> <br>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <a href="{{visa.imagen_visa.url}}" target="_blank">Ver visa / </a>
+                                    <a href="" target="_blank" class="imgvisa">Cambiar</a>
+                                    <div id="img_visa" style="display:none">
+                                        <input id="id_imagen_visa" type="file" accept='image/*'>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </form>
+                    {% endfor %}
+                
+                    {% else %}
+                    <strong>Visas: </strong> N/A
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </div>
+        <!-- ######################################## INICIO DEL FORMULARIO ######################################## -->
+
+    </div>
+</div>
+</div>
+
+{% endblock contenido %}
+
+{% block scripts %}
+  <script>
+    if(history.forward(1)){
+      location.replace( history.forward(1) );
+    }
+   document.onkeydown = function(e){
+    tecla = (document.all) ? e.keyCode : e.which;
+   // alert(tecla)
+    if (tecla == 116) {
+      return false;
+    }
+   }
+  </script>
+  
+  {% endblock scripts %}

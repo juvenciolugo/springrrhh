@@ -1,0 +1,213 @@
+{% extends 'tags/empty_page.html' %}
+{% load staticfiles %}
+{% load querys %}
+
+{% block head %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SpringRRHH | Home</title>
+    <link rel="icon" type="image/png" href="{% static 'img/icono-springlabs.png' %}" />
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+        <!-- Toastr style -->
+    <link href="{% static 'css/plugins/toastr/toastr.min.css' %}" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="{% static 'js/plugins/gritter/jquery.gritter.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+{% endblock head %}
+
+{% block js %}
+
+     <!-- Mainly scripts -->
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+    <script src="{% static 'js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+    <!-- Peity -->
+    <script src="{% static 'js/plugins/peity/jquery.peity.min.js' %}"></script>
+    <script src="{% static 'js/demo/peity-demo.js' %}"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="{% static 'js/inspinia.js' %}"></script>
+    <script src="{% static 'js/plugins/pace/pace.min.js' %}"></script>
+
+    <!-- Sparkline -->
+    <script src="{% static 'js/plugins/sparkline/jquery.sparkline.min.js' %}"></script>
+
+    <!-- Sparkline demo data  -->
+    <script src="{% static 'js/demo/sparkline-demo.js' %}"></script>
+
+    <!-- Toastr -->
+    <script src="{% static 'js/plugins/toastr/toastr.min.js' %}"></script>
+
+{% endblock js %}
+
+{% block scripts %}
+ 
+    <script>
+        $(document).ready(function() {
+            /*
+            setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 4000
+                };
+                toastr.success('Bienvenido a SpringRH', '{{user.first_name}} {{user.last_name}}');
+
+            }, 1300);
+            */
+        });
+    </script>
+
+{% endblock scripts %}
+
+{% block contenido_header %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>Inicio</h2>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <strong>Etapas del empleado {{usuario.first_name}} {{usuario.last_name}}</strong>
+                </li>
+            </ol>
+        </div>
+<!--         <div class="col-sm-8">
+            <div class="title-action">
+                <a href="" class="btn btn-primary">This is action area</a>  
+            </div>
+        </div> -->
+    </div>
+{% endblock contenido_header %}
+
+{% block contenido %}
+<div class="middle-box text-center">
+    <div class="row">
+        <div class="tooltip-demo">
+
+            {% if etapa == 1 %}
+            <!-- Mostar aviso que no ha acompletado etapa 1    -->
+            <!--<a href="{% url 'dashAdm' emp.id %}"><button class="btn btn-info" >Ver</button> </a>-->
+            <p>Este usuario no ha acompletado la primera etapa</p>
+
+             {% elif etapa == 2 or etapa == 3 %}
+             <!-- Mostar etapa1 visor solamente   -->
+            <a href="{% url 'admperfil' empleado.user_id %}">
+            <button class="btn btn-info  dim btn-large-dim btn-outline" type="button" data-toggle="tooltip" data-placement="left" title="Etapa 1, Datos Básico y Nacionalidades"><i class="fa fa-user-circle"></i></button>
+            
+            </a> 
+
+            {% elif etapa == 4 or etapa == 5 %}
+            <!-- Mostar etapa1,2 visor solamente  -->
+            <a href="{% url 'admperfil' empleado.user_id %}">
+            <button class="btn btn-default  dim btn-large-dim btn-outline text-center animated fadeInLeft" type="button" data-toggle="tooltip" data-placement="left" title="Etapa 1, Datos Básico y Nacionalidades"><i class="fa fa-user-circle"></i></button>
+           </a>
+            <a href="{% url 'admetapa-2' empleado.user_id %}">
+            <button class="btn btn-default  dim btn-large-dim btn-outline text-center animated fadeInDown" type="button" data-toggle="tooltip" data-placement="top" title="Etapa 2, Documentación y Visas"><i class="fa fa-address-book" ></i></button>
+            </a> 
+            
+            {% elif etapa == 6 or etapa == 7 %}
+            <!-- Mostar etapa1,2,3 visor solamente  -->
+            <div class="row">
+                <a href="{% url 'admperfil' empleado.user_id %}">
+            <button class="btn btn-default  dim btn-large-dim btn-outline text-center animated fadeInLeft" type="button" data-toggle="tooltip" data-placement="left" title="Etapa 1, Datos Básico y Nacionalidades"><i class="fa fa-user-circle"></i></button>
+            </a>
+            <a href="{% url 'admetapa-2' empleado.user_id %}">
+            <button class="btn btn-default  dim btn-large-dim btn-outline text-center animated fadeInDown" type="button" data-toggle="tooltip" data-placement="top"  title="Etapa 2, Documentación y Visas"><i class="fa fa-address-book" ></i></button>
+            </a>
+            <a href="{% url 'admetapa-3' empleado.user_id %}">
+            <button class="btn btn-default  dim btn-large-dim btn-outline text-center animated fadeInRight" type="button" data-toggle="tooltip" data-placement="top"  title="Etapa 3, Estado civil y Extranjero"><i class="fa fa-address-card-o" ></i></button>
+             </a>
+            </div>
+
+            
+            
+             
+
+            {% elif etapa == 8 or etapa == 9 or etapa == 10 or etapa == 11 or etapa == 12 %}
+             <!-- Mostar etapa1,2,3,4 visor solamente  -->
+            <div class="row">
+                <a href="{% url 'admperfil' empleado.user_id %}">
+            <button class="btn btn-default  dim btn-large-dim btn-outline text-center animated fadeInLeft" type="button" data-toggle="tooltip" data-placement="left" title="Etapa 1, Datos Básico y Nacionalidades"><i class="fa fa-user-circle"></i></button>
+            </a> 
+            <a href="{% url 'admetapa-2' empleado.user_id %}">
+                <button class="btn btn-default  dim btn-large-dim btn-outline text-center animated fadeInDown" type="button" data-toggle="tooltip" data-placement="top"  title="Etapa 2, Documentación y Visas"><i class="fa fa-address-book" ></i></button>
+            </a>
+ 
+            <a href="{% url 'admetapa-3' empleado.user_id %}">
+            <button class="btn btn-default  dim btn-large-dim btn-outline text-center animated fadeInRight" type="button" data-toggle="tooltip" data-placement="top"  title="Etapa 3, Estado civil y Extranjero"><i class="fa fa-address-card-o" ></i></button>
+
+            </div>
+            <a href="{% url 'admetapa-4' empleado.user_id %}">
+            <button class="btn btn-default  dim btn-large-dim btn-outline text-center animated fadeInLeft" type="button" data-toggle="tooltip" data-placement="right" title="Etapa 4, Hijos"><i class="fa fa-group" ></i></button>
+            </a> 
+
+            {% elif etapa == 13 or etapa == 14 %}
+              <!-- Mostar etapa1,2,3,4,5 visor solamente  -->
+            <div class = "row">
+                <a href="{% url 'admperfil' empleado.user_id %}">
+            <button class="btn btn-default  dim btn-large-dim btn-outline text-center animated fadeInLeft" type="button" data-toggle="tooltip" data-placement="left" title="Etapa 1, Datos Básico y Nacionalidades"><i class="fa fa-user-circle"></i></button>
+            </a>
+            <a href="{% url 'admetapa-2' empleado.user_id %}">
+            <button class="btn btn-default  dim btn-large-dim btn-outline text-center animated fadeInDown" type="button" data-toggle="tooltip" data-placement="top"  title="Etapa 2, Documentación y Visas"><i class="fa fa-address-book" ></i></button>
+            </a>
+            <a href="{% url 'admetapa-3' empleado.user_id %}">
+            <button class="btn btn-default  dim btn-large-dim btn-outline text-center animated fadeInRight" type="button" data-toggle="tooltip" data-placement="top"  title="Etapa 3, Estado civil y Extranjero"><i class="fa fa-address-card-o" ></i></button>
+            </a>
+
+            </div>
+            <a href="{% url 'admetapa-4' empleado.user_id %}">
+            <button class="btn btn-default  dim btn-large-dim btn-outline text-center animated fadeInLeft" type="button" data-toggle="tooltip" data-placement="right" title="Etapa 4, Hijos"><i class="fa fa-group" ></i></button>
+            <a href="{% url 'admetapa-5' empleado.user_id %}">
+            <button class="btn btn-default  dim btn-large-dim btn-outline text-center animated fadeInUp" type="button" data-toggle="tooltip" data-placement="bottom" title="Etapa 5, Nivel de Estudio, Cursos y Talleres e Idiomas"><i class="fa fa-graduation-cap" ></i></button>
+            </a> 
+
+            {% elif etapa == 15 %}
+           <!-- Mostar etapa1,2,3,4,5y 6 visor   -->
+
+            <div class="row">
+                    <a href="{% url 'admperfil' empleado.user_id %}">
+            <button class="btn btn-info  dim btn-large-dim btn-outline" type="button" data-toggle="tooltip" data-placement="left" title="Etapa 1, Datos Básico y Nacionalidades"><i class="fa fa-user-circle"></i></button>
+            
+            </a>
+            <a href="{% url 'admetapa-2' empleado.user_id %}">
+            <button class="btn btn-warning  dim btn-large-dim btn-outline text-center animated fadeInRight" type="button" data-toggle="tooltip" data-placement="right" title="Etapa 2, Documentación y Visas"><i class="fa fa-address-book" ></i></button>
+            
+            </a>
+            <a href="{% url 'admetapa-3' empleado.user_id %}">
+            <button class="btn btn-success  dim btn-large-dim btn-outline text-center animated fadeInRight" type="button" data-toggle="tooltip" data-placement="right" title="Etapa 3, Estado civil y Extranjero"><i class="fa fa-address-card-o" ></i></button>
+            </a>
+            </div>
+            <div class="row">
+                    <a href="{% url 'admetapa-4' empleado.user_id %}">
+            <button class="btn btn-danger  dim btn-large-dim btn-outline text-center animated fadeInUp" type="button" data-toggle="tooltip" data-placement="right" title="Etapa 4, Hijos"><i class="fa fa-group" ></i></button>
+            </a>
+            <a href="{% url 'admetapa-5' empleado.user_id %}">
+            <button class="btn btn-primary  dim btn-large-dim btn-outline text-center animated fadeInRight" type="button" data-toggle="tooltip" data-placement="bottom" title="Etapa 5, Nivel de Estudio, Cursos y Talleres e Idiomas"><i class="fa fa-graduation-cap" ></i></button>
+            </a>
+            <a href="{% url 'admetapa-6' empleado.user_id %}">
+            <button class="btn btn-info  dim btn-large-dim btn-outline text-center animated fadeInRight" type="button" data-toggle="tooltip" data-placement="bottom" title="Etapa 6, Comprobantes y Cartas de recomendación(Personales)"><i class="fa fa-folder-open" ></i></button>                
+            </a>
+            </div>
+            <div class = "row">
+                <div class="alert alert-info text-center animated fadeInUp">
+                    <strong>EL PERFIL DEL EMPLEADO YA ESTÁ COMPLETO</strong>
+                </div>
+            </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock contenido %}

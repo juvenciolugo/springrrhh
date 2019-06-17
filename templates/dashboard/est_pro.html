@@ -1,0 +1,40 @@
+{% for est in Est_pro %}
+<form id="frm_est_pro{{forloop.counter}}" method="POST" action="{% url 'update-pro-docs' %}" role="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container ">
+            
+      <div class="row">
+            
+        {% if est.comprobante %}
+            <div class="form-group col-sm-3 conten-bloque">
+                    {{est.estudios_nombre}}<br>
+                <a href="{{est.comprobante.url}}" target="_blank">Ver estudio {{est.estudios_tipo}}/ </a>
+                <a href="" target="_blank" class="imgestpro">Cambiar</a>
+            </div>
+        {% else %}
+            <div class="form-group col-sm-3 conten-bloque">
+                {{est.estudios_nombre}}
+            </div>
+        {% endif %}
+        
+        {% if est.comprobante %}
+         <div class="img_estpro" style="display:none">
+        {% else %}
+         <div class="img_estpro">
+         {% endif %}
+         <div class="form-group col-sm-4 ">
+            <input id="est_Id{{forloop.counter}}" name="est_Id" type="hidden" value="{{ est.id }}">
+            {{form_est.comprobante}}
+         </div>
+         <div class="form-group">
+                <button type="button" class="btn btn-sm btn-success btn_actpro" title="Actualizar"><span class="glyphicon glyphicon-ok"></span></button>
+         </div>
+          </div>
+         
+   
+   
+   
+        </div><!-- row -->
+    </div><!-- container -->
+</form>
+{% endfor %}

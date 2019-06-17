@@ -1,0 +1,100 @@
+<!-- AGREGAR  REFERENCIA -->
+<div class="modal fade" id="addRefModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" id="mdialTamanio" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">AGREGAR REFERENCIA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+              <form class="form-horizontal" id="frm_secseis_add_ref" method="post" role="form" action="{% url 'cv-secseis' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input id="candId6" name="candId6" type="hidden" value=""> 
+                  
+                <div class="modal-body">
+                        *Los campos enmarcados en rojo son obligatorios               
+                        <div class="form-group row">
+                            <div class="col-lg-4"><br>
+                              <label>{{ form_referencia.referencia_nombre.label }} </label>
+                              {{ form_referencia.referencia_nombre }} 
+                            </div>
+                            <div class="col-lg-4"><br>
+                              <label>{{ form_referencia.referencia_ocupacion.label }} </label>
+                              {{ form_referencia.referencia_ocupacion }} 
+                            </div>
+                            
+                            <div class="col-lg-2"><br>
+                             <label>{{ form_referencia.referencia_tel.label }}</label>
+                             {{ form_referencia.referencia_tel }}
+                            </div>
+                            <div class="col-lg-1">
+                              <label>{{ form_referencia.referencia_annios_conocer.label }}</label>
+                              {{ form_referencia.referencia_annios_conocer }}
+                             </div>
+                    </div>
+                    
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btn_add_referencia" class="btn btn-primary">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End of AGREGAR REFERENCIA modal-->
+
+<!-- EDITAR  REFERENCIA -->
+<div class="modal fade" id="editRefModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" id="mdialTamanio" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">EDITAR REFERENCIA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+              <form class="form-horizontal" id="frm_secseis_edit_ref" method="post" role="form" action="{% url 'edit-referencia' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input id="ref_id" name="ref_id" type="hidden" value="">                   
+                  
+                <div class="modal-body">
+                        *Los campos enmarcados en rojo son obligatorios               
+                        <div class="form-group row">
+                            <div class="col-lg-4"><br>
+                              <label>{{ form_editreferencia.referencia_nombre.label }} </label>
+                              {{ form_editreferencia.referencia_nombre }} 
+                            </div>
+                            <div class="col-lg-4"><br>
+                              <label>{{ form_editreferencia.referencia_ocupacion.label }} </label>
+                              {{ form_editreferencia.referencia_ocupacion }} 
+                            </div>
+                            
+                            <div class="col-lg-2"><br>
+                             <label>{{ form_editreferencia.referencia_tel.label }}</label>
+                             {{ form_editreferencia.referencia_tel }}
+                            </div>
+                            <div class="col-lg-1">
+                              <label>{{ form_editreferencia.referencia_annios_conocer.label }}</label>
+                              {{ form_editreferencia.referencia_annios_conocer }}
+                             </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                      
+                      
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btn_edit_sec6" class="btn btn-primary">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End of EDITAR REFERENCIA modal-->

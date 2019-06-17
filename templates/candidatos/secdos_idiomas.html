@@ -1,0 +1,13 @@
+<button type="button" class="btn btn btn-rounded btn-info"  style="float:left" id="agregar_idioma">Agregar idioma</button>
+<table class="table" id="table_idiomas" >
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" style="text-align: center">Nombre del Idioma</th>
+            <th scope="col" style="text-align: center">Porcentaje</th>
+            <th scope="col" style="text-align: center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="contenido">
+            {% include 'candidatos/idiomas_lista.html' %}
+        </tbody>
+      </table>

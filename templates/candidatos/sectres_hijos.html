@@ -1,0 +1,19 @@
+<button type="button" class="btn btn btn-rounded btn-primary"  style="float:left" id="agregar_hijo">Agregar hijo</button>
+<div class="text-center">
+<table class="table" id="table_hijos" >
+        <thead class="thead-dark">
+          <tr>
+            
+            <th scope="col" style="text-align: center">Nombre del hijo(a)</th>
+            <th scope="col" style="text-align: center">Ocupación</th>
+            <th scope="col" style="text-align: center">Edad</th>
+            <th scope="col" style="text-align: center">Teléfono</th>
+            <th scope="col" style="text-align: center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="contenido">
+            {% include 'candidatos/hijos_lista.html' %}
+        </tbody>
+    
+</table>
+</div>

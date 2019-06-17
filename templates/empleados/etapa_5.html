@@ -1,0 +1,677 @@
+{% extends 'tags/empty_page.html' %}
+{% load staticfiles %}
+{% load querys %}
+
+{% block head %}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SpringRH | Etapa 5</title>
+
+<link rel="icon" type="image/png" href="{% static 'img/icono-springlabs.png' %}" />
+
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/iCheck/custom.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/chosen/bootstrap-chosen.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/colorpicker/bootstrap-colorpicker.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/cropper/cropper.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/switchery/switchery.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/nouslider/jquery.nouislider.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/ionRangeSlider/ion.rangeSlider.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/clockpicker/clockpicker.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/daterangepicker/daterangepicker-bs3.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/select2/select2.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/dualListbox/bootstrap-duallistbox.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/animate.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/blueimp/css/blueimp-gallery.min.css' %}" rel="stylesheet">
+<style>
+    .error {
+        color: red;
+        font-family: Verdana;
+        font-size: 8pt;
+    }
+</style>
+
+{% endblock head %}
+
+{% block js %}
+<!-- Mainly scripts -->
+<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="{% static 'js/inspinia.js' %}"></script>
+<script src="{% static 'js/plugins/pace/pace.min.js' %}"></script>
+<script src="{% static 'js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+<!-- Chosen -->
+<script src="{% static 'js/plugins/chosen/chosen.jquery.js' %}"></script>
+
+<!-- JSKnob -->
+<script src="{% static 'js/plugins/jsKnob/jquery.knob.js' %}"></script>
+
+<!-- Input Mask-->
+<script src="{% static 'js/plugins/jasny/jasny-bootstrap.min.js' %}"></script>
+
+<!-- Data picker -->
+<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
+
+<!-- NouSlider -->
+<script src="{% static 'js/plugins/nouslider/jquery.nouislider.min.js' %}"></script>
+
+<!-- Switchery -->
+<script src="{% static 'js/plugins/switchery/switchery.js' %}"></script>
+
+<!-- IonRangeSlider -->
+<script src="{% static 'js/plugins/ionRangeSlider/ion.rangeSlider.min.js' %}"></script>
+
+<!-- iCheck -->
+<script src="{% static 'js/plugins/iCheck/icheck.min.js' %}"></script>
+
+<!-- MENU -->
+<script src="{% static 'js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+
+<!-- Color picker -->
+<script src="{% static 'js/plugins/colorpicker/bootstrap-colorpicker.min.js' %}"></script>
+
+<!-- Clock picker -->
+<script src="{% static 'js/plugins/clockpicker/clockpicker.js' %}"></script>
+
+<!-- Image cropper -->
+<script src="{% static 'js/plugins/cropper/cropper.min.js' %}"></script>
+
+<!-- Date range use moment.js same as full calendar plugin -->
+<script src="{% static 'js/plugins/fullcalendar/moment.min.js' %}"></script>
+
+<!-- Date range picker -->
+<script src="{% static 'js/plugins/daterangepicker/daterangepicker.js' %}"></script>
+
+<!-- Select2 -->
+<script src="{% static 'js/plugins/select2/select2.full.min.js' %}"></script>
+
+<!-- TouchSpin -->
+<script src="{% static 'js/plugins/touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
+
+<!-- Tags Input -->
+<script src="{% static 'js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js' %}"></script>
+
+<!-- Dual Listbox -->
+<script src="{% static 'js/plugins/dualListbox/jquery.bootstrap-duallistbox.js' %}"></script>
+
+<!-- blueimp gallery -->
+<script src="{% static 'js/plugins/blueimp/jquery.blueimp-gallery.min.js' %}"></script>
+
+<!-- Mis scripts -->
+<script src="{% static 'js/empleados/etapa_5.js' %}"></script>
+
+
+
+{% endblock js %}
+
+
+
+{% block contenido_header %}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2><strong>ETAPA 5</strong> Información Profesional</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="{% url 'home' %}">Inicio</a>
+            </li>
+            <li class="active">
+                <a href=""><strong>{{user.first_name}} {{user.last_name}}</strong></a>
+            </li>
+        </ol>
+    </div>
+</div>
+{% endblock contenido_header %}
+
+{% block contenido %}
+
+<form class="form-horizontal" method="post" role="form" action="" autocomplete="off" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% if empleado.status == 8 or empleado.status == 9 %}
+    <div class="wrapper wrapper-content animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <i class="fa fa-vcard-o"></i> <strong>Sección 1</strong>
+                    </div>
+                    <div class="panel-body">
+
+                        {% if empleado.status == 8 %}
+                        <div class="alert alert-dismissable alert-warning">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Rellene solo los campos que según su condición apliquen.</strong>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-4">
+                                <label>Nivel de estudios</label>*
+                                {{Formulario.nivel_estudios}}
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Universidad de donde es o será titulado</label>*
+                                {{Formulario.universidad}}
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Título obtenido o por obtener</label>*
+                                {{Formulario.titulo}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-4">
+                                <label>Carrera o profesión</label>*
+                                {{Formulario.carrera}}
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Número de cédula profesional</label>*
+                                {{Formulario.cedula_profesional_cedula}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-4">
+                                <label>Imágen de cédula profesional</label>*
+                                {{Formulario.cedula_profesional_imagen_cedula_profesional}}
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Constancia de estudio o diploma universitario</label>*
+                                <input type="file" name="constancia_de_estudio" class="form-control" accept="image/*"
+                                    id="id_constancia_de_estudio">
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                        {% elif empleado.status == 9 %}
+                        <label>Nivel de estudios: </label> {{estudios.nivel_estudios}}<br>
+                        {% if estudios.universidad != '' %}
+                        <label>Universidad: </label>{{estudios.universidad}}<br>
+                        {% endif %}
+                        {% if estudios.titulo != '' %}
+                        <label>Título: </label>
+                        {{estudios.titulo}}<br>
+                        {% endif %}
+                        {% if estudios.carrera != '' %}
+                        <label>Carrera: </label>
+                        {{estudios.carrera}}<br>
+                        {% endif %}
+                        {% if estudios.cedula_profesional.cedula %}
+                        <label>Cédula profesional: </label>
+                        {{estudios.cedula_profesional.cedula}}<br>
+                        {% endif %}
+                        {% else %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if empleado.status == 10 or empleado.status == 11 or empleado.status == 12 %}
+    <div class="wrapper wrapper-content animated fadeIn">
+        <div class="row">
+            <div class="col-lg-4">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <i class="fa fa-vcard-o"></i> <strong>Sección 1</strong>
+                    </div>
+                    <div class="panel-body">
+                        <label>Nivel de estudios: </label> {{estudios.nivel_estudios}}<br>
+                        {% if estudios.universidad != '' %}
+                        <label>Universidad: </label>{{estudios.universidad}}<br>
+                        {% endif %}
+                        {% if estudios.titulo != '' %}
+                        <label>Título: </label>
+                        {{estudios.titulo}}<br>
+                        {% endif %}
+                        {% if estudios.carrera != '' %}
+                        <label>Carrera: </label>
+                        {{estudios.carrera}}<br>
+                        {% endif %}
+                        {% if estudios.cedula_profesional.cedula %}
+                        <label>Cédula profesional: </label>
+                        {{estudios.cedula_profesional.cedula}}<br>
+                        {% endif %}
+
+                        <div class="col-lg-12">
+                            <span>
+                                <br>
+                            </span>
+                        </div>
+
+
+                        {% if estudios.cedula_profesional.imagen_cedula_profesional %}
+                        <div class="file-box">
+                            <div class="file">
+                                <a href="{{estudios.cedula_profesional.imagen_cedula_profesional.url}}" target="_blank">
+                                    <span class="corner"></span>
+
+                                    <div class="icon">
+                                        <i class="fa fa-file"></i>
+                                    </div>
+                                    <div class="file-name">
+                                        Cédula profesional.{{extension_cedula}}
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if estudios.constacia_de_estudio %}
+                        <div class="file-box">
+                            <div class="file">
+                                <a href="{{estudios.constacia_de_estudio.url}}" target="_blank">
+                                    <span class="corner"></span>
+
+                                    <div class="icon">
+                                        <i class="fa fa-file"></i>
+                                    </div>
+                                    <div class="file-name">
+                                        Constancia de estudio{{extension_constancia}}
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <i class="fa fa-vcard-o"></i> <strong>Sección 2</strong>
+                        </div>
+                        <div class="panel-body">
+                            {% if empleado.status == 10 %}
+                            {{ Cursos.as_p }}
+                            <div class="col-lg-8">
+                                <span>
+                                    <br>
+                                </span>
+                            </div>
+                            {% if cursos %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <h5>Cursos</h5>
+                                            <div class="ibox-tools">
+                                                <a class="collapse-link">
+                                                    <i class="fa fa-chevron-up"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="ibox-content">
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Tipo</th>
+                                                        <th>Nombre</th>
+                                                        <th>Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for capacitacion in cursos %}
+                                                    <tr>
+                                                        <td>{{forloop.counter}}</td>
+                                                        <td>{{capacitacion.tipo_curso}}</td>
+                                                        <td>{{capacitacion.nombre_curso}}</td>
+                                                        <td>
+                                                            <a href="{{capacitacion.certificado.url}}" target="_blank">
+                                                                <p class="text-success">Ver Certificado</p>
+                                                            </a>
+                                                            <a href="{% url 'borrar-curso' capacitacion.id %}">
+                                                                <p class="text-danger">Borrar</p>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <div class="col-lg-8">
+                                <span>
+                                   
+                                </span>
+                            </div>
+                            <p class="text-right">
+                                <button type="submit" class="btn btn-block btn-rounded btn-success">Agregar</button>
+                            </p>
+                            {% else %}
+                            {% if cursos %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <h5>Cursos</h5>
+                                            <div class="ibox-tools">
+                                                <a class="collapse-link">
+                                                    <i class="fa fa-chevron-up"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="ibox-content">
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Tipo</th>
+                                                        <th>Nombre</th>
+                                                        <th>Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for capacitacion in cursos %}
+                                                    <tr>
+                                                        <td>{{forloop.counter}}</td>
+                                                        <td>{{capacitacion.tipo_curso}}</td>
+                                                        <td>{{capacitacion.nombre_curso}}</td>
+                                                        <td>
+                                                            <a href="{{capacitacion.certificado.url}}" target="_blank">
+                                                                <p class="text-success">Ver</p>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                            <strong>Ningún curso o capacitación</strong>
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% if empleado.status == 11 or empleado.status == 12 %}
+                <div class="col-lg-4">
+                    <!--             <div class="alert alert-dismissable alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Nivel bajo: </strong>es un nivel muy básico, sin fluidez y en el que se cometen muchos errores.
+            </div>
+            <div class="alert alert-dismissable alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Nivel medio: </strong>es un nivel medio, puede mantener una conversación poco fluida. Comete errores y el vocabulario es limitado.
+            </div>
+            <div class="alert alert-dismissable alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Nivel alto: </strong>se comunica con fluidez y comete pocos errores.
+            </div>
+            <div class="alert alert-dismissable alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Nivel bilingüe: </strong>es un nivel similar al de la lengua materna, puede hablar y escribir con fluidez en cualquier contexto. Puede traducir sin dificultad.
+            </div> -->
+
+                </div>
+
+
+                <div class="col-lg-12">
+
+                    <div class="panel panel-primary">
+
+                        <div class="panel-heading">
+                            <i class="fa fa-vcard-o"></i> <strong>Sección 3</strong>
+                        </div>
+                        <div class="panel-body">
+
+                            {% if empleado.status == 11 %}
+                            {{Idiomas.as_p}}
+                            <div class="col-lg-8">
+                                <span>
+                                    <br>
+                                </span>
+                            </div>
+                            {% if idiomas %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <h5>idiomas</h5>
+                                            <div class="ibox-tools">
+                                                <a class="collapse-link">
+                                                    <i class="fa fa-chevron-up"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="ibox-content">
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Idioma</th>
+                                                        <th>Nivel escrito</th>
+                                                        <th>Nivel hablado</th>
+                                                        <th>Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for idioma in idiomas %}
+                                                    <tr>
+                                                        <td>{{forloop.counter}}</td>
+                                                        <td>{{idioma.idioma}}</td>
+                                                        <td>{{idioma.nivel_escrito}}</td>
+                                                        <td>{{idioma.nivel_hablado}}</td>
+                                                        <td>
+                                                            <a href="{% url 'borrar-idioma' idioma.id %}">
+                                                                <p class="text-danger">Borrar</p>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <p class="text-right">
+                                <button type="submit" class="btn btn-block btn-rounded btn-success">Agregar</button>
+                            </p>
+                            {% else %}
+                            {% if idiomas %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <h5>Idiomas</h5>
+                                            <div class="ibox-tools">
+                                                <a class="collapse-link">
+                                                    <i class="fa fa-chevron-up"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="ibox-content">
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Idioma</th>
+                                                        <th>Nivel escrito</th>
+                                                        <th>Nivel hablado</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for idioma in idiomas %}
+                                                    <tr>
+                                                        <td>{{forloop.counter}}</td>
+                                                        <td>{{idioma.idioma}}</td>
+                                                        <td>{{idioma.nivel_escrito}}</td>
+                                                        <td>{{idioma.nivel_hablado}}</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                            <strong>Ningún idioma</strong>
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="wrapper wrapper-content animated fadeIn">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="lightBoxGallery">
+
+                        {% if empleado.status == 9 %}
+
+                        <div>
+
+                            {% if estudios.cedula_profesional.imagen_cedula_profesional %}
+                            <a href="{{estudios.cedula_profesional.imagen_cedula_profesional.url}}"
+                                title="Cédula profesional" data-gallery=""><img
+                                    src="{{estudios.cedula_profesional.imagen_cedula_profesional.url}}" height="165"
+                                    width="165"></a>
+                            {% endif %}
+
+                            {% if estudios.constacia_de_estudio %}
+                            <a href="{{estudios.constacia_de_estudio.url}}" title="Constancia de estudios"
+                                data-gallery=""><img src="{{estudios.constacia_de_estudio.url}}" height="165"
+                                    width="165"></a>
+                            {% endif %}
+
+                            <div id="blueimp-gallery" class="blueimp-gallery">
+                                <div class="slides"></div>
+                                <h3 class="title"></h3>
+                                <a class="prev">‹</a>
+                                <a class="next">›</a>
+                                <a class="close">×</a>
+                                <a class="play-pause"></a>
+                                <ol class="indicator"></ol>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            <span>
+                                <br>
+                            </span>
+                        </div>
+                        <div class="col-lg-12">
+                            <a class="btn btn-success btn-rounded"
+                                href="{% url 'rechaza-status-9' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Editar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a class="btn btn-primary btn-rounded"
+                                href="{% url 'confirma-status-9' %}">&nbsp;&nbsp;Confirmar&nbsp;&nbsp;</a>
+                        </div>
+                        {% endif %}
+                        {% if empleado.status == 10 %}
+                        <div class="col-lg-12">
+                            <a class="btn btn-primary btn-rounded"
+                                href="{% url 'confirma-status-10' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aceptar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        </div>
+                        {% endif %}
+                        {% if empleado.status == 11 %}
+                        <div class="col-lg-12">
+                            <a class="btn btn-primary btn-rounded"
+                                href="{% url 'confirma-status-11' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aceptar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        </div>
+                        {% endif %}
+                        {% if empleado.status == 12 %}
+                        <div class="col-lg-12">
+                            <a class="btn btn-success btn-rounded"
+                                href="{% url 'rechaza5' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Editar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a class="btn btn-primary btn-rounded"
+                                href="{% url 'confirma5' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Confirmar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        </div>
+                        {% endif %}
+                        {% if empleado.status == 8 %}
+                        <div class="col-lg-12">
+                            <button type="submit" class="btn btn-block btn-rounded btn-primary">Aceptar</button>
+                        </div>
+                        {% endif %}
+                        <div class="col-lg-12">
+                            <span>
+                                <br>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+{% endblock contenido %}
+
+{% block scripts %}
+<script>
+    if (history.forward(1)) {
+        location.replace(history.forward(1));
+    }
+    document.onkeydown = function (e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        // alert(tecla)
+        if (tecla == 116) {
+            return false;
+        }
+    }
+</script>
+
+{% endblock scripts %}

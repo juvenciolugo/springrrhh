@@ -1,0 +1,26 @@
+{% for referencia in referencias %}
+  <tr>
+    <td class="text-center" >{{ referencia.referencia_nombre }}</td>
+    <td class="text-center" >{{ referencia.referencia_ocupacion }}</td>
+    <td class="text-center" >{{ referencia.referencia_annios_conocer }}</td>
+    <td class="text-center" >{{ referencia.referencia_tel }}</td>
+    <td class="text-center" >
+    <button type="button"
+              onclick="edit_referencia({{referencia.id}})"
+              class="btn btn-warning btn-sm "
+              data-url="">
+        <span class="glyphicon glyphicon-pencil"></span> Editar
+      </button>
+    <button type="button"
+              class="btn btn-danger btn-sm btnDelete"
+              data-id="{{referencia.id}}"
+              data-reg="REF">
+      <span class="glyphicon glyphicon-trash"></span> Borrar
+    </button>
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="7" class="text-center bg-warning">No existen referencias agregadas</td>
+  </tr>
+{% endfor %}

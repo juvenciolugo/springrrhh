@@ -1,0 +1,13 @@
+<button type="button" class="btn btn btn-rounded btn-info"  style="float:left" id="agregar_estudio">Agregar estudio profesional</button>
+<table class="table" id="table_estudios" >
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" style="text-align: center">Tipo</th>
+            <th scope="col" style="text-align: center">Estudio</th>
+            <th scope="col" style="text-align: center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="contenido">
+            {% include 'colaboradores/estudios_lista.html' %}
+        </tbody>
+      </table>

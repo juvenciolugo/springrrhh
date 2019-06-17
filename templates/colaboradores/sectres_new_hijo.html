@@ -1,0 +1,89 @@
+<!-- Agregar  HIJO -->
+<div class="modal fade" id="addHijoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog " id="mdialTamanio" role="document">
+    <div class="modal-content" >
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">AGREGAR HIJO</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="form-horizontal" id="frm_sectres_hijos" method="post" role="form" action="{% url 'addcol-hijo' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input id="candId3_hijo" name="candId3_hijo" type="hidden" value="">                
+        
+        <div class="modal-body">
+            *Los campos enmarcados en rojo son obligatorios               
+            <div class="form-group row">
+            <div class="col-lg-5">
+              <label>{{ form_hijo.hijo_nombre.label }} </label>
+              {{ form_hijo.hijo_nombre }}
+            </div>
+            <div class="col-lg-3">
+              <label>{{ form_hijo.hijo_ocupacion.label }} </label>
+              {{ form_hijo.hijo_ocupacion }}
+            </div>
+            
+            <div class="col-lg-1">
+              <label>{{ form_hijo.hijo_edad.label }}</label>
+              {{ form_hijo.hijo_edad }}
+            </div>
+            </div>
+
+         
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="btn_add_hijo" class="btn btn-primary">Agregar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End of agregar HIJO modal-->
+
+<!-- EDITAR  HIJO -->
+<div class="modal fade" id="editHijoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog " id="mdialTamanio" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">EDITAR HIJO</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="form-horizontal" id="frm_sectres_edit_hijos" method="post" role="form" action="{% url 'editcol-hijo' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input id="hijo_id" name="hijo_id" type="hidden" value="">                
+        <input id="candId_edithijo" name="candId_edithijo" type="hidden" value="">  
+        <div class="modal-body">
+            <div class="form-group row">
+            <div class="col-lg-5">
+              <label>{{ form_edithijo.hijo_nombre.label }} </label>
+              {{ form_edithijo.hijo_nombre }}
+            </div>
+            <div class="col-lg-3">
+              <label>{{ form_edithijo.hijo_ocupacion.label }} </label>
+              {{ form_edithijo.hijo_ocupacion }}
+            </div>
+            <div class="col-lg-2">
+              <label>{{ form_edithijo.hijo_edad.label }}</label>
+              {{ form_edithijo.hijo_edad }}
+            </div>
+            </div>
+
+         
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="btn_edit_hijo" class="btn btn-primary">Actualizar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End of EDITAR HIJO modal-->

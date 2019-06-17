@@ -1,0 +1,86 @@
+{% extends "tags/base_cand.html" %}
+{% load staticfiles %}
+{% load querys %}
+
+{% block head %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <title>SpringRRHH | Home</title>
+    
+  <style>
+    .anyClass {
+      height:300px;
+      width:600px;
+      margin: 0 auto;
+      overflow-y: scroll;
+    }
+  </style>
+
+{% endblock head %}
+
+{% block scripts %}
+<script>
+  if(history.forward(1)){
+      location.replace( history.forward(1) );
+    }
+   document.onkeydown = function(e){
+    tecla = (document.all) ? e.keyCode : e.which;
+   // alert(tecla)
+    if (tecla == 116) {
+      return false;
+    }
+   };
+   window.location.hash = "no-back-button";
+   window.location.hash = "Again-No-back-button";//esta linea es necesaria para chrome
+   window.onhashchange = function () { window.location.hash = "no-back-button"; }
+  
+  $(document).ready(function () {
+    $( '#aviso' ).on( 'click', function() {
+    if( $(this).is(':checked') ){
+      if (localStorage) 
+        localStorage["aviso"]= 'True';
+        $("#iniciar").show();
+    } else {
+      if (localStorage) 
+        localStorage.removeItem("aviso");
+      $("#iniciar").hide();
+    }
+});
+
+  });
+
+</script>
+{% endblock %}
+
+{% block content %}
+  
+    <div class="middle-box  text-center">
+      <div class="row">
+       <div class="tooltip-demo"><br><br><br>
+        <img src="{% static 'img/logoNuevo.png' %}" alt="logo" width="400px">
+        <h2>Bienvenido al sistema de registro para candidatos</h2>
+     <!--   <p>Si deseas laborar con nosotros este es el primer paso, antes de iniciar lee nuestro aviso de privacidad.</p>-->
+        <br>
+        
+       
+      </div>
+      <label>AVISO DE PRIVACIDAD</label>
+      <div class="anyClass">
+          {% include 'candidatos/aviso.html' %}
+      </div>
+      <div style="margin:0 auto;">
+          <br><input type="checkbox" id="aviso" name="aviso" value="leido"> He leído y acepto los términos<br><br>
+          <a class="btn btn-primary btn-rounded" id="iniciar" style="display:none;" href="{% url 'registro-cv' %}">Iniciar captura de solicitud</a>
+      </div>
+     </div>
+    </div>
+  
+
+
+{% endblock %}

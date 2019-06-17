@@ -1,0 +1,45 @@
+{% for cand in candidatos %}
+<tr>
+
+  <td class="text-center">{{ cand.nombre }}</td>
+  <td class="text-center">{{ cand.apellido_paterno }}</td>
+  <td class="text-center">{{ cand.apellido_materno }}</td>
+  <td class="text-center">{{ cand.puesto_solicitado }}</td>
+  <td class="text-center">{{ cand.edad }}</td>
+  <td class="text-center">{{ cand.tel }}</td>
+  <td class="text-center">{{ cand.fecha_solicitud|date:"d/m/Y" }}</td>
+
+  <td class="text-center">
+    <button type="button" onclick="env_email( {{cand.id}},{{ user.id }} )" class="btn btn-success btn-sm " data-url=""
+      data-toggle="tooltip" data-placement="top" title="Enviar correo">
+      <span class="glyphicon glyphicon-envelope"></span>
+    </button>
+    
+
+    
+    <a href="{% url 'pasar-emp' cand.id %}"><button class="btn btn-success btn-sm" data-toggle="tooltip"
+        data-placement="top" title="Contratar">
+        <span class="glyphicon glyphicon-thumbs-up"></span></button> </a>
+    <a href="{% url 'candrrhh' cand.id %}" class="candrrhh"><button class="btn btn-primary btn-sm" data-toggle="tooltip"
+        data-placement="top" title="Ver solicitud">
+        <span class="glyphicon glyphicon-pencil"></span></button> </a>
+
+    <a href="{% url 'reporte' cand.id %}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top"
+        title="Exportar a excell">
+        <span class="glyphicon glyphicon-download-alt"></span> xls</button> </a>
+
+    <a href="{% url 'candidato_pdf' cand.id %}" target="_blank"><button class="btn btn-info btn-sm"
+        data-toggle="tooltip" data-placement="top" title="Exportar a pdf">
+        <span class="glyphicon glyphicon-download-alt"></span> pdf</button> </a>
+
+    <button type="button" class="btn btn-danger btn-sm btnDelete" data-id="{{cand.id}}" data-reg="CANDIDATO"
+      data-toggle="tooltip" data-placement="top" title="Eliminar candidato">
+      <span class="glyphicon glyphicon-trash"></span>
+    </button>
+  </td>
+</tr>
+{% empty %}
+<tr>
+  <td colspan="8" class="text-center bg-warning">No existen candidatos actualmente</td>
+</tr>
+{% endfor %}

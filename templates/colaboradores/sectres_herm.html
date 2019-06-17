@@ -1,0 +1,17 @@
+<button type="button" class="btn btn btn-rounded btn-info"  style="float:left" id="agregar_hermano">Agregar hermano</button>
+<table class="table" id="table_hermanos" >
+        <thead class="thead-dark">
+          <tr>
+            
+            <th scope="col" style="text-align: center">Nombre del hermano(a)</th>
+            <th scope="col" style="text-align: center">Ocupación</th>
+            <th scope="col" style="text-align: center">Edad</th>
+            <th scope="col" style="text-align: center">Teléfono</th>
+            <th scope="col" style="text-align: center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="contenido">
+            {% include 'colaboradores/hermanos_lista.html' %}
+        </tbody>
+    
+      </table>

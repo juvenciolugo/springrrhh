@@ -1,0 +1,634 @@
+{% extends 'tags/empty_page.html' %}
+{% load staticfiles %}
+{% load querys %}
+
+{% block head %}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SpringRRHH | Home</title>
+<link rel="icon" type="image/png" href="{% static 'img/icono-springlabs.png' %}" />
+
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+<!-- Toastr style -->
+<link href="{% static 'css/plugins/toastr/toastr.min.css' %}" rel="stylesheet">
+
+<!-- Gritter -->
+<link href="{% static 'js/plugins/gritter/jquery.gritter.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/animate.css' %}" rel="stylesheet">
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+<style>
+  .conten-bloque {
+    display: table-cell;
+    /* Imprescindible */
+    height: 10px;
+    text-align: right;
+    /* X */
+    vertical-align: top;
+    /* Y */
+
+  }
+
+  .table .thead-light th {
+
+    color: #401500;
+
+    background-color: rgb(91, 169, 206);
+
+    border-color: #792700;
+
+  }
+</style>
+
+{% endblock head %}
+
+{% block js %}
+
+<!-- Mainly scripts -->
+<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+<script src="{% static 'js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+<!-- Peity -->
+<script src="{% static 'js/plugins/peity/jquery.peity.min.js' %}"></script>
+<script src="{% static 'js/demo/peity-demo.js' %}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="{% static 'js/inspinia.js' %}"></script>
+<script src="{% static 'js/plugins/pace/pace.min.js' %}"></script>
+
+<!-- Data picker -->
+<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.es.min.js' %}"></script>
+
+<!-- Sparkline -->
+<script src="{% static 'js/plugins/sparkline/jquery.sparkline.min.js' %}"></script>
+
+<!-- Sparkline demo data  -->
+<script src="{% static 'js/demo/sparkline-demo.js' %}"></script>
+
+<!-- Toastr -->
+<script src="{% static 'js/plugins/toastr/toastr.min.js' %}"></script>
+<!-- Mis scripts -->
+<script src="{% static 'js/dashboard/emp_lst.js' %}"></script>
+
+{% endblock js %}
+
+{% block scripts %}
+
+
+{% endblock scripts %}
+
+{% block contenido_header %}
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-sm-4">
+    <h2>Listado de Personal</h2>
+  </div>
+
+</div>
+{% endblock contenido_header %}
+
+{% block contenido %}
+<button id="agregar_per" class="btn btn-info" data-toggle="tooltip" data-placement="top"
+  title="Crear nuevo acceso">Crear</button>
+
+<form id="frm_stipo" method="POST" action="" role="form" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="middle-box text-center">
+    {{form.as_p}}
+    <!-- <button type="submit" class="btn btn-primary">Mostrar</button>-->
+  </div>
+</form>
+
+<div class="text-center">
+  <div class="row">
+    <div class="tooltip-demo">
+
+
+      <table class="table table-hover" id="table_empleados">
+        <thead class="thead-light">
+          <tr>
+
+            <th scope="col" style="text-align: center">Nombre</th>
+            <th scope="col" style="text-align: center">Apellidos</th>
+            <th scope="col" style="text-align: center">Usuario</th>
+            <th scope="col" style="text-align: center">Correo</th>
+            <th scope="col" style="text-align: center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="contenido">
+            {% include 'dashboard/emp_cont.html' %}
+        </tbody>
+      </table>
+      <div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Edit  Modal PERSONAL -->
+<div class="modal fade" id="editPerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">EDITAR</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div style="text-align: center;">
+        <h3>Datos de acceso del empleado</h3>
+        <div class="container col-md-12" id="user_existe2" style="display:none;">
+          <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert"></button>
+            <strong>Usuario: </strong> Nombre de usuario existe!.
+          </div>
+        </div>
+        <div class="container col-md-12" id="email_existe2" style="display:none;">
+          <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert"></button>
+            <strong>Correo: </strong> Correo existente!.
+          </div>
+        </div>
+        <div class="container col-md-12" id="pass2" style="display:none;">
+          <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert"></button>
+            <strong>Contraseña: </strong> No coinciden la contraseña!.
+          </div>
+        </div>
+
+      </div>
+      <form id="frm_editper" method="POST" action="{% url 'update_per' %}" role="form" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        <div class="modal-body">
+          <input id="id" name="id" type="hidden" value="">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                Usuario
+                {{ form_emp.username }}
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                Nombre
+                {{ form_emp.first_name }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                Apellidos
+                {{ form_emp.last_name }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                Correo
+                {{ form_emp.email }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                Contraseña
+                {{ form_emp.password1 }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                Confirma
+                {{ form_emp.password2 }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                <label>Tipo</label>
+                {{ form_emp.is_admin }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                <label>Activo</label>
+                {{ form_emp.is_active }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Actualizar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End of edit modal -->
+
+<!-- Agrega  Modal PERSONAL -->
+<div class="modal fade" id="add_PerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">CREAR</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+
+
+      <div style="text-align: center;">
+        <h3>Datos de acceso del empleado a crear</h3>
+
+        <div class="container col-md-12" id="user_existe" style="display:none;">
+          <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert"></button>
+            <strong>Usuario: </strong> Nombre de usuario existe!.
+          </div>
+        </div>
+        <div class="container col-md-12" id="email_existe" style="display:none;">
+          <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert"></button>
+            <strong>Correo: </strong> Correo existente!.
+          </div>
+        </div>
+        <div class="container col-md-12" id="pass" style="display:none;">
+          <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert"></button>
+            <strong>Contraseña: </strong> No coinciden la contraseña!.
+          </div>
+        </div>
+      </div>
+      <form id="frm_addper" method="POST" action="{% url 'new_per' %}" role="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="modal-body">
+          <input id="id" name="id" type="hidden" value="">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                {{ nform.username }}
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                {{ nform.first_name }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                {{ nform.last_name }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                {{ nform.email }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+
+              <div class="alert alert-dismissable alert-success">
+                <button type="button" class="close" data-dismiss="alert"></button>
+                La longitud del password debe tener como mínimo 8 caracteres alfanumericos
+              </div>
+
+              <div class="form-group">
+                {{ nform.password1 }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                {{ nform.password2 }}
+              </div>
+              <div class="alert alert-dismissable alert-danger" id="p_msg" style="display:none;">
+                xx
+              </div>
+            </div>
+
+
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                <label>Tipo</label>
+                {{ nform.is_admin }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                <label>Activo</label>
+                {{ nform.is_active }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Agregar</button><br>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End of agrega modal -->
+
+<div class="modal fade" id="miModal" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel2"></h4>
+        </div>
+        <div class="modal-body">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Mostrar DOCS  ModalL -->
+<div class="modal fade" id="ver_docs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content panel ">
+
+      <div class="panel-primary" style="text-align: center;">
+        <div class="panel-heading text-center">
+          <strong></strong>
+          <h3>Lista de documentos recibidos del empleado</h3></strong>
+        </div>
+
+
+        <div class="modal-body">
+          <div class="row">
+            <label>Status del empleado:</label><label id="status_doc" style="color:blue"></label>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-8 col-md-offset-1 conten-bloque">
+              <label>{{form_doc.INE.label}}</label>
+              {{ form_doc.INE }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-8 col-md-offset-1 conten-bloque">
+              <label>{{form_doc.Acta.label}}</label>
+              {{ form_doc.Acta }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-8 col-md-offset-1 conten-bloque">
+              <label>{{form_doc.CURP.label}}</label>
+              {{ form_doc.CURP }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-8 col-md-offset-1 conten-bloque">
+              <label>{{form_doc.RFC.label}}</label>
+              {{ form_doc.RFC }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-8 col-md-offset-1 conten-bloque">
+              <label>{{form_doc.Comp_dom.label}}</label>
+              {{ form_doc.Comp_dom }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-8 col-md-offset-1 conten-bloque">
+              <label>{{form_doc.Comp_grado.label}}</label>
+              {{ form_doc.Comp_grado }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-8 col-md-offset-1 conten-bloque">
+              <label>{{form_doc.Comp_cursos.label}}</label>
+              {{ form_doc.Comp_cursos }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-8 col-md-offset-1 conten-bloque">
+              <label>{{form_doc.Comp_permiso.label}}</label>
+              {{ form_doc.Comp_permiso }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-8 col-md-offset-1 conten-bloque">
+              <label>{{form_doc.IMSS.label}}</label>
+              {{ form_doc.IMSS }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-8 col-md-offset-1 conten-bloque">
+              <label>{{form_doc.Cartas.label}}</label>
+              {{ form_doc.Cartas }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-8 col-md-offset-1 conten-bloque">
+              <label>{{form_doc.Esdo_cuenta.label}}</label>
+              {{ form_doc.Esdo_cuenta }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-8 col-md-offset-1 conten-bloque">
+              <label>{{form_doc.Esdo_info.label}}</label>
+              {{ form_doc.Esdo_info }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-8 col-md-offset-1 conten-bloque">
+              <label>{{form_doc.Lic_manejo.label}}</label>
+              {{ form_doc.Lic_manejo }}
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Mostrar Docs modal -->
+
+<!-- Enviar correo DOCS  ModalL -->
+<div class="modal fade" id="env_correo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content panel ">
+      <div class="panel-primary">
+        <div class="panel-heading text-center">
+          <strong>
+            <h3>Envio de correo electrónico</h3>
+          </strong>
+        </div>
+        <form id="frm_email" method="POST" action="{% url 'enviar2-email' %}" role="form" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="modal-body">
+            <div class="row">
+              <div class="form-group col-md-8 col-md-offset-1">
+                <label>De</label>
+                <input type="text" name="nombre" class="form-control" maxlength="60" id="nombre">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-8 col-md-offset-1">
+                <label>Correo electrónico</label>
+                <input type="text" name="correo" class="form-control" maxlength="60" id="correo">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-8 col-md-offset-1">
+                <label>Para</label>
+                <input type="text" name="nombre_emp" class="form-control" maxlength="60" id="nombre_emp">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-8 col-md-offset-1">
+                <label>Correo electrónico</label>
+                <input type="text" name="correo_emp" class="form-control" maxlength="60" id="correo_emp">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-8 col-md-offset-1">
+                <label>Mensaje</label>
+                <textarea name="mensaje" cols="20" rows="4" class="form-control" maxlength="200"
+                  id="mensaje"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Enviar</button><br>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Enviar correo modal -->
+
+<!-- start: Delete Registro Modal -->
+<div class="modal fade" id="myModalDel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title" id="myModalLabel">Precaución!</h3>
+      </div>
+      <div class="modal-body">
+        <h4> ¿Esta seguro de dar de baja al empleado?</h4>
+      </div>
+      <!--/modal-body-collapse -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="btnDeleteYes" href="#">SI</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+      </div>
+      <!--/modal-footer-collapse -->
+    </div> <!-- /.modal-content -->
+  </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->
+
+<!-- Formulario de baja de empleado  ModalL -->
+<div class="modal fade" id="myModalBaja" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content panel ">
+      <div class="panel-primary">
+        <div class="panel-heading text-center">
+          <strong>
+            <h3>Baja de empleado</h3>
+          </strong>
+        </div>
+        <form id="frm_baja_emp" method="POST" action="{% url 'baja-emp' %}" role="form" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input id="emp_Id" name="emp_Id" type="hidden" value="">
+          <div class="modal-body">
+            <div class="row">
+              <div class="form-group col-md-4 col-md-offset-1">
+                <label>Fecha de baja</label>
+                <div class="input-group date">
+                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                  {{ form_baja.fecha_baja }}
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="form-group col-md-4 col-md-offset-1">
+                <label>{{form_baja.tipo_baja.label}}</label>
+                {{ form_baja.tipo_baja }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-10 col-md-offset-1">
+                <label>{{form_baja.motivo.label}}</label>
+                {{ form_baja.motivo }}
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-danger" id="btndarBaja">Dar de baja</button><br>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Formulario de baja de empleaod modal -->
+
+
+
+
+{% endblock contenido %}

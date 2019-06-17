@@ -1,0 +1,221 @@
+<div class="form-group row">
+  <div class="col-lg-4">
+    <label>{{ form_candidato.fuente_recluta.label }}</label>
+    {{ form_candidato.fuente_recluta }}
+  </div>
+  <div class="col-lg-4">
+    <label>{{ form_candidato.puesto_solicitado.label }}</label>
+    {{ form_candidato.puesto_solicitado }}
+  </div>
+  <div class="col-lg-4">
+    <label>{{ form_candidato.sueldo_deseado.label }}</label>
+    {{ form_candidato.sueldo_deseado }}
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-lg-4">
+    <label>{{ form_candidato.nombre.label }} </label>
+    {{ form_candidato.nombre }}
+  </div>
+  <div class="col-lg-4">
+    <label>{{ form_candidato.apellido_paterno.label }}</label>
+    {{ form_candidato.apellido_paterno }}
+  </div>
+  <div class="col-lg-4">
+    <label>{{ form_candidato.apellido_materno.label }}</label>
+    {{ form_candidato.apellido_materno }}
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-lg-2">
+    <label>{{ form_candidato.sexo.label }} </label>
+    {{ form_candidato.sexo }}
+  </div>
+  <div class="col-lg-2">
+    <label>{{ form_candidato.estado_civil.label }}</label>
+    {{ form_candidato.estado_civil }}
+  </div>
+
+  <div class="col-lg-2">
+
+
+    <label>{{ form_candidato.fecha_nac.label }}</label>
+    <div class="input-group date normal" id="fn">
+      <span class="input-group-addon" style="pointer-events:none"><i class="fa fa-calendar"></i></span>
+      {{ form_candidato.fecha_nac }}
+
+
+    </div>
+  </div>
+  <div class="col-lg-1">
+    <label>{{ form_candidato.edad.label }}</label>
+    {{ form_candidato.edad }}
+  </div>
+
+
+
+  <div class="col-lg-3">
+    <label>{{ form_candidato.lugar_nac.label }}</label>
+    {{ form_candidato.lugar_nac }}
+  </div>
+  <div class="col-lg-2">
+    <label>{{ form_candidato.pais_nacimiento.label }}</label>
+    {{ form_candidato.pais_nacimiento }}
+  </div>
+
+</div>
+
+<div class="form-group row">
+  <div class="col-lg-4">
+    <label>{{ form_candidato.tel.label }} </label>
+    {{ form_candidato.tel }}
+  </div>
+  <div class="col-lg-4">
+    <label>{{ form_candidato.cel.label }}</label>
+    {{ form_candidato.cel }}
+  </div>
+  <div class="col-lg-2">
+    <label>{{ form_candidato.tipo.label }}</label>
+    {{ form_candidato.tipo }}
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-lg-4">
+    <label>{{ form_candidato.calle.label }} </label>
+    {{ form_candidato.calle }}
+  </div>
+  <div class="col-lg-1">
+    <label>{{ form_candidato.num_ext.label }}</label>
+    {{ form_candidato.num_ext }}
+  </div>
+  <div class="col-lg-1">
+    <label>{{ form_candidato.num_int.label }}</label>
+    {{ form_candidato.num_int }}
+  </div>
+  <div class="col-lg-4">
+    <label>{{ form_candidato.calle_uno.label }} </label>
+    {{ form_candidato.calle_uno }}
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-lg-4">
+    <label>{{ form_candidato.calle_dos.label }}</label>
+    {{ form_candidato.calle_dos }}
+  </div>
+  <div class="col-lg-2">
+    <label>{{ form_candidato.piso.label }} </label>
+    {{ form_candidato.piso }}
+  </div>
+  <div class="col-lg-3">
+    <label>{{ form_candidato.depto.label }}</label>
+    {{ form_candidato.depto }}
+  </div>
+  <div class="col-lg-2">
+    <label>{{ form_candidato.cp.label }}</label>
+    {{ form_candidato.cp }}
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-lg-4">
+    <label>{{ form_candidato.colonia.label }} </label>
+    {{ form_candidato.colonia }}
+  </div>
+  <div class="col-lg-3">
+    <label>{{ form_candidato.pais_direc.label }}</label>
+    {{ form_candidato.pais_direc }}
+  </div>
+  <div class="col-lg-3" id="esdo" style="display:none;">
+    <label>{{ form_candidato.esdo.label }}</label>
+    {{ form_candidato.esdo }}
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-lg-6">
+    <label>{{ form_candidato.referencia.label }} </label>
+    {{ form_candidato.referencia }}
+  </div>
+
+  <div class="col-lg-3">
+    <label>{{ form_candidato.trayectoria_de_casa.label }}</label>
+    {{ form_candidato.trayectoria_de_casa }}
+  </div>
+
+  <div class="col-lg-3">
+    <label>{{ form_candidato.email_personal.label }}</label>
+    <div id="email">{{ form_candidato.email_personal }}</div>
+  </div>
+
+</div>
+
+<div class="form-group row">
+  <div class="col-lg-4">
+    <label>CURP</label>
+    {{ form_candidato.curp }}
+  </div>
+  <div class="col-lg-4">
+    <label>{{ form_candidato.rfc.label }} </label>
+    {{ form_candidato.rfc }}
+  </div>
+  <div class="col-lg-3">
+    <label>{{ form_candidato.imss.label }}</label>
+    {{ form_candidato.imss }}
+  </div>
+</div>
+<div class="form-group row">
+  <div class="col-lg-4">
+      <label>{{ form_candidato.imagen_curp.label }}</label>
+      {{ form_candidato.imagen_curp }}
+  </div>
+  <div class="col-lg-4">
+      <label>{{ form_candidato.imagen_rfc.label }}</label>
+      {{ form_candidato.imagen_rfc }}
+  </div>
+  <div class="col-lg-3">
+      <label>{{ form_candidato.imagen_imss.label }}</label>
+      {{ form_candidato.imagen_imss }}
+  </div>
+
+</div>
+
+<div class="form-group row">
+  <div class="col-lg-4">
+    <label>{{ form_candidato.cartilla.label }}</label>
+    {{ form_candidato.cartilla }}
+  </div>
+  <div class="col-lg-4">
+    <label>{{ form_candidato.tipo_licencia.label }} </label>
+    {{ form_candidato.tipo_licencia }}
+  </div>
+  <div class="col-lg-3" id="nlic" style="display:none;">
+    <label>{{ form_candidato.licencia.label }}</label>
+    {{ form_candidato.licencia }}
+  </div>
+</div>
+<div class="form-group row">
+    <div class="col-lg-4">
+        <label>{{ form_candidato.imagen_cartilla.label }}</label>
+      {{ form_candidato.imagen_cartilla }}
+    </div>
+    <div class="col-lg-4">
+        <label>{{ form_candidato.img_lic_anverso.label }}</label>
+        {{ form_candidato.img_lic_anverso }}
+    </div>
+    <div class="col-lg-3">
+        <label>{{ form_candidato.img_lic_reverso.label }}</label>
+      {{ form_candidato.img_lic_reverso }}
+    </div>
+    
+
+  </div>
+  <div class="form-group row">
+      <div class="col-lg-4">
+    <label>{{ form_candidato.tipo_documento_identidad.label }}</label>
+    {{ form_candidato.tipo_documento_identidad }}
+      </div>
+  </div>

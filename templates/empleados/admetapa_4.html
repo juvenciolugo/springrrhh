@@ -1,0 +1,284 @@
+{% extends 'tags/empty_page.html' %}
+{% load staticfiles %}
+{% load querys %}
+
+{% block head %}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SpringRH | Perfil</title>
+
+<link rel="icon" type="image/png" href="{% static 'img/icono-springlabs.png' %}" />
+
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/toastr/toastr.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'js/plugins/gritter/jquery.gritter.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/animate.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/dropzone/basic.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/dropzone/dropzone.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/codemirror/codemirror.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/iCheck/custom.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/chosen/bootstrap-chosen.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/colorpicker/bootstrap-colorpicker.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/cropper/cropper.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/switchery/switchery.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/nouslider/jquery.nouislider.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/blueimp/css/blueimp-gallery.min.css' %}" rel="stylesheet">
+
+{% endblock head %}
+
+{% block js %}
+
+<!-- Mainly scripts -->
+<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+<script src="{% static 'js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+<!-- Peity -->
+<script src="{% static 'js/plugins/peity/jquery.peity.min.js' %}"></script>
+<script src="{% static 'js/demo/peity-demo.js' %}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="{% static 'js/inspinia.js' %}"></script>
+
+<script src="{% static 'js/plugins/pace/pace.min.js' %}"></script>
+
+<!-- Sparkline -->
+<script src="{% static 'js/plugins/sparkline/jquery.sparkline.min.js' %}"></script>
+
+<!-- Sparkline demo data  -->
+<script src="{% static 'js/demo/sparkline-demo.js' %}"></script>
+
+<!-- Toastr -->
+<script src="{% static 'js/plugins/toastr/toastr.min.js' %}"></script>
+
+<!-- Jasny -->
+<script src="{% static 'js/plugins/jasny/jasny-bootstrap.min.js' %}"></script>
+
+<!-- DROPZONE -->
+<script src="{% static 'js/plugins/dropzone/dropzone.js' %}"></script>
+
+<!-- Chosen -->
+<script src="{% static 'js/plugins/chosen/chosen.jquery.js' %}"></script>
+
+<!-- JSKnob -->
+<script src="{% static 'js/plugins/jsKnob/jquery.knob.js' %}"></script>
+
+<!-- Data picker -->
+<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.es.min.js' %}"></script>
+
+<!-- NouSlider -->
+<script src="{% static 'js/plugins/nouslider/jquery.nouislider.min.js' %}"></script>
+
+<!-- Switchery -->
+<script src="{% static 'js/plugins/switchery/switchery.js' %}"></script>
+
+<!-- iCheck -->
+<script src="{% static 'js/plugins/iCheck/icheck.min.js' %}"></script>
+
+<!-- TouchSpin -->
+<script src="{% static 'js/plugins/touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
+
+<!-- Tags Input -->
+<script src="{% static 'js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js' %}"></script>
+
+<!-- blueimp gallery -->
+<script src="{% static 'js/plugins/blueimp/jquery.blueimp-gallery.min.js' %}"></script>
+
+<!-- Mis scripts -->
+<script src="{% static 'js/empleados/adm_etapa_4.js' %}"></script>
+
+
+{% endblock js %}
+
+
+
+{% block contenido_header %}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="col-sm-8">
+        <h2>Perfil del empleado : {{usuario.first_name}} {{usuario.last_name}}</h2>
+        <h3>Etapa 4</h3>
+    </div>
+    <!--         <div class="col-sm-8">
+            <div class="title-action">
+                <a href="" class="btn btn-primary">This is action area</a>
+                
+            </div>
+        </div> -->
+</div>
+{% endblock contenido_header %}
+
+{% block contenido %}
+
+<div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <!-- INICIO ERRORES -->
+
+            <!-- FIN ERRORES -->
+            {% if nacionalidades %}
+
+            {% endif %}
+            <div class="container col-md-12" id="ok" style="display:none;">
+                <div class="alert alert-dismissable alert-success">
+                    Datos Actualizados!!
+                </div>
+            </div>
+            <a href="{% url 'dashAdm' empleado.pk %}"><button class="btn btn-warning">Regresar a Etapas</button> </a>
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <i class="fa fa-user-circle-o"></i> <strong>Hijos</strong>
+                </div>
+                <div class="panel-body">
+                    <label>Cantidad de hijos :</label>{{ empleado.numero_hijos }} <br>
+                    {% if tiene_hijos %}
+                    {% if hijos_registrados %}
+                    {% for hijo in hijos_registrados %}
+                    <form id="frm_hijo_{{forloop.counter}}" name="frm_hhijo_{{forloop.counter}}" method="POST" autocomplete="off" action="{% url 'update_hijo' %}" role="form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input id="Id" name="Id" type="hidden" value={{ hijo.pk }}>
+                        <div id="data_1">
+                            <label>HIJO Nro. {{forloop.counter}}</label><br>
+                            <div class="form-group row">
+                                <div class="form-group col-sm-3">
+                                    <strong>Nombre: </strong>
+                                    <input id="id_nombre" name="nombre" class="form-control soloLetras" value="{{hijo.nombre}}" maxlength="60"
+                                        readonly="readonly">
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <strong>Apellido Paterno: </strong>
+                                    <input id="id_apellido_paterno" name="apellido_paterno" class="form-control soloLetras" maxlength="60"
+                                        value="{{hijo.apellido_paterno}}" readonly="readonly">
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <strong>Apellido Materno: </strong>
+                                    <input id="id_apellido_materno" name="apellido_materno" class="form-control soloLetras" maxlength="60"
+                                        value="{{hijo.apellido_materno}}" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="form-group col-sm-3">
+                                    <strong>Fecha de nacimiento: </strong>
+                                    <input id="id_fecha_nacimiento" name="fecha_nacimiento" class="form-control"
+                                        value="{{hijo.fecha_nacimiento|date:'d/m/Y'}}" readonly="readonly">
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <strong>Edad: </strong>
+                                    <input id="id_edad" name="edad" class="form-control soloNumeros" maxlength="3" value="{{hijo.edad}}"
+                                        readonly="readonly">
+                                </div>
+                            </div>
+                            <div id="btns" style="display:none">
+                                <button type="button" id="btncanHijo" class="btn btn-success">Cancelar</button>
+                                <button type="submit" id="btnactHijo" class="btn btn-primary">Actualizar</button>
+                            </div>
+
+                        </div>
+                    </form>
+                    {% endfor %}
+                    {% else %}
+
+                    {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+                <button id="agregar_hijo" class="btn btn-info">Agregar</button>
+
+            </div>
+
+
+            <!-- ######################################## INICIO DEL FORMULARIO ######################################## -->
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Agregar  Modal -->
+<div class="modal fade" id="addHijoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">AGREGAR</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="frm_add" method="POST" action="{% url 'add_hijo' %}" role="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <input id="userId" name="userId" type="hidden" value={{ empleado.pk }}>
+
+
+                    {{formset.as_p}}
+                    <br>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End of agregar modal HIJO-->
+
+
+{% endblock contenido %}
+{% block scripts %}
+<script>
+    if (history.forward(1)) {
+        location.replace(history.forward(1));
+    }
+    document.onkeydown = function (e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        // alert(tecla)
+        if (tecla == 116) {
+            return false;
+        }
+    }
+</script>
+
+{% endblock scripts %}

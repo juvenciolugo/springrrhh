@@ -1,0 +1,533 @@
+{% extends 'tags/empty_page.html' %}
+{% load staticfiles %}
+{% load querys %}
+
+{% block head %}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SpringRH | Perfil</title>
+
+<link rel="icon" type="image/png" href="{% static 'img/icono-springlabs.png' %}" />
+
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/toastr/toastr.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'js/plugins/gritter/jquery.gritter.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/animate.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/dropzone/basic.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/dropzone/dropzone.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/codemirror/codemirror.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/iCheck/custom.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/chosen/bootstrap-chosen.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/colorpicker/bootstrap-colorpicker.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/cropper/cropper.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/switchery/switchery.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/nouslider/jquery.nouislider.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/plugins/blueimp/css/blueimp-gallery.min.css' %}" rel="stylesheet">
+<style>
+    .error {
+        color: red;
+        font-family: Verdana;
+        font-size: 8pt;
+    }
+</style>
+{% endblock head %}
+
+{% block js %}
+
+<!-- Mainly scripts -->
+<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+<script src="{% static 'js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+<!-- Peity -->
+<script src="{% static 'js/plugins/peity/jquery.peity.min.js' %}"></script>
+<script src="{% static 'js/demo/peity-demo.js' %}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="{% static 'js/inspinia.js' %}"></script>
+
+<script src="{% static 'js/plugins/pace/pace.min.js' %}"></script>
+
+<!-- Sparkline -->
+<script src="{% static 'js/plugins/sparkline/jquery.sparkline.min.js' %}"></script>
+
+<!-- Sparkline demo data  -->
+<script src="{% static 'js/demo/sparkline-demo.js' %}"></script>
+
+<!-- Toastr -->
+<script src="{% static 'js/plugins/toastr/toastr.min.js' %}"></script>
+
+<!-- Jasny -->
+<script src="{% static 'js/plugins/jasny/jasny-bootstrap.min.js' %}"></script>
+
+<!-- DROPZONE -->
+<script src="{% static 'js/plugins/dropzone/dropzone.js' %}"></script>
+
+<!-- Chosen -->
+<script src="{% static 'js/plugins/chosen/chosen.jquery.js' %}"></script>
+
+<!-- JSKnob -->
+<script src="{% static 'js/plugins/jsKnob/jquery.knob.js' %}"></script>
+
+<!-- Data picker -->
+<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.es.min.js' %}"></script>
+
+<!-- NouSlider -->
+<script src="{% static 'js/plugins/nouslider/jquery.nouislider.min.js' %}"></script>
+
+<!-- Switchery -->
+<script src="{% static 'js/plugins/switchery/switchery.js' %}"></script>
+
+<!-- iCheck -->
+<script src="{% static 'js/plugins/iCheck/icheck.min.js' %}"></script>
+
+<!-- TouchSpin -->
+<script src="{% static 'js/plugins/touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
+
+<!-- Tags Input -->
+<script src="{% static 'js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js' %}"></script>
+
+<!-- blueimp gallery -->
+<script src="{% static 'js/plugins/blueimp/jquery.blueimp-gallery.min.js' %}"></script>
+<!-- Mis scripts -->
+<script src="{% static 'js/empleados/adm_etapa_1.js' %}"></script>
+
+
+{% endblock js %}
+
+
+{% block contenido_header %}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <h2>Perfil del empleado : {{usuario.first_name}} {{usuario.last_name}}</h2>
+    <h3>Etapa 1</h3>
+
+</div>
+{% endblock contenido_header %}
+
+{% block contenido %}
+
+<div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- INICIO ERRORES -->
+            {%if form.apellido_paterno.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Apellido paterno: </strong> {{ form.apellido_paterno.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.apellido_materno.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Apellido materno: </strong> {{ form.apellido_materno.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.fecha_nacimiento.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Fecha de nacimiento: </strong> {{ form.fecha_nacimiento.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.nacionalidad.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Nacionalidad: </strong> {{ form.nacionalidad.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.pais_nacimiento.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>País de nacimiento: </strong> {{ form.pais_nacimiento.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.edad.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Edad: </strong> {{ form.edad.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.foto.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Foto: </strong> {{ form.foto.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.acta_nacimiento.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Acta de nacimiento: </strong> {{ form.acta_nacimiento.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.referencia.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Referencia: </strong> {{ form.referencia.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.tlf.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Tlf: </strong> {{ form.tlf.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.tipo_documento_identidad.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Tipo de documento de identidad: </strong> {{ form.tipo_documento_identidad.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.docu_ident_front.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Documento de identidad imagen delantera: </strong> {{ form.docu_ident_front.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.docu_ident_back.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Documento de identidad imagen trasera: </strong> {{ form.docu_ident_back.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.pasaporte.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Pasaporte: </strong> {{ form.pasaporte.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.fecha_vencimiento_pasaporte.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Fecha de vencimiento del pasaporte: </strong>
+                {{ form.fecha_vencimiento_pasaporte.errors.as_text }}
+            </div>
+            {%endif%}
+            {%if form.imagen_pasaporte.errors%}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Imagen del pasaporte: </strong> {{ form.imagen_pasaporte.errors.as_text }}
+            </div>
+            {%endif%}
+            {% if nacionalidades %}
+
+            {% endif %}
+
+
+            <!-- TERMINA ERRORES -->
+        </div>
+        <div class="container col-md-12" id="ok" style="display:none;">
+            <div class="alert alert-dismissable alert-success">
+                <button type="button" class="close" data-dismiss="alert"></button>
+                Datos Actualizados!!
+            </div>
+        </div>
+        <a href="{% url 'dashAdm' empleado.pk %}"><button class="btn btn-warning">Regresar a Etapas</button> </a>
+        <!-- inicia seccion de basicos-->
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <i class="fa fa-user-circle-o"></i> <strong>Datos Básicos</strong>
+            </div>
+            <div class="panel-body">
+
+                <form name="frmbas" id="frm_bas" method="POST" action="{% url 'update_bas' %}" role="form" autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input id="userId" name="userId" type="hidden" value={{ empleado.pk }}>
+
+                    <div class="form-group" id="data_1">
+                        <div class="form-group row">
+                            <div class="form-group col-sm-2">
+                                <a href="{{empleado.foto.url}}" target="_blank">Ver foto / </a>
+                                <a href="" target="_blank" class="imgfoto">Cambiar</a>
+                            </div>
+                            <div class="form-group col-sm-4" id="img_foto" style="display:none">
+                                {{ form.foto }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+
+                            <div class="form-group col-sm-4">
+                                <label>Nombre</label>
+                                {{ form.nombre }}<br>
+                            </div>
+                            <div class="form-group col-sm-4">
+
+                                <label>Paterno</label>
+                                {{ form.apellido_paterno }}<br>
+                            </div>
+                            <div class="form-group col-sm-4">
+
+                                <label>Materno</label><br>
+                                {{ form.apellido_materno }}<br>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="form-group col-sm-3">
+                                <label>F. Nac. :</label>
+                                {{ form.fecha_nacimiento }}<br>
+
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label>Edad </label><br>
+                                {{ form.edad }}
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label>Pais de nacimiento</label><br>
+                                <div id="paisnac_" class="select_" style="readonly:True;">{{ form.pais_nacimiento }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="form-group col-sm-3">
+                                <a href="{{empleado.acta_nacimiento.url}}" target="_blank">Ver acta de nacimiento / </a>
+                                <a href="" target="_blank" class="imgacta">Cambiar</a>
+                            </div>
+                            <div class="form-group col-sm-3" id="img_acta" style="display:none">
+                                {{ form.acta_nacimiento }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group col-sm-3">
+                                <label>Tipo:</label>
+                                <div id="tipo_" class="select_">{{ form.tipo }}</div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Calle:</label>
+                                {{ form.calle }}
+                            </div>
+                            <div class="form-group col-sm-2">
+                                <label>#ext.:</label>
+                                {{ form.num_ext }}
+                            </div>
+                            <div class="form-group col-sm-2">
+                                <label>#int.:</label>
+                                {{ form.num_int }}
+                            </div>
+                        </div>
+
+                        <div class="form-group row" id="opc_dep" style="display:none">
+                            <div class="form-group col-sm-2">
+                                <label>Piso: </label>
+                                {{ form.piso }}
+                            </div>
+                            <div class="form-group col-sm-2">
+                                <label>Depto:</label>
+                                {{ form.depto     }}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="form-group col-sm-5">
+                                <label>Entre:</label>
+                                {{ form.calle_uno }}
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Y : </label>
+                                {{ form.calle_dos }}
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group row">
+                            <div class="form-group col-sm-4">
+                                <label>Tel: </label>
+                                {{ form.tel }}
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label>Cel: </label>
+                                {{ form.cel }}
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label>email: </label>
+                                {{ form.email_personal }}
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group row">
+                            <div class="form-group col-sm-2">
+                                <label>CP: </label>
+                                {{ form.cp }}
+                            </div>
+
+
+                            <div class="form-group col-sm-2">
+                                <label>Colonia: </label>
+                                {{ form.colonia }}
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label>Esdo: </label>
+                                <div id="esdo_" class="select_">{{ form.esdo }}</div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label>Pais: </label>
+                                <div id="paisdir_" class="select_">{{ form.pais_direc }}</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group col-sm-8">
+                                <label>Referencia: </label>
+                                {{ form.referencia }}
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div id="btns" style="display:none;">
+                        <button id="btncanBas" class="btn btn-success">Cancelar</button>
+                        <button id="btnactBas" class="btn btn-primary">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Termina seccion de basicos-->
+        <div class="container col-md-12" id="ok2" style="display:none;">
+            <div class="alert alert-dismissable alert-success">
+
+                Datos Actualizados!!
+            </div>
+        </div>
+        <div class="panel panel-success">
+
+            <div class="panel-heading">
+                <i class="fa fa-user-circle-o"></i> <strong>Nacionalidades</strong>
+            </div>
+
+
+            <div class="panel-body">
+                <form id="frm_nac" method="POST" action="{% url 'update_nac' %}" role="form"
+                    enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input id="userId" name="userId" type="hidden" value={{ empleado.pk }}>
+
+                    <div class="form-group" id="data_2">
+
+
+                        <div id="nacio_" class="form-group">
+
+                            <label>Nacionalidad</label>
+                            <a href="" target="_blank" class="nnac">Modificar</a>
+                            <div id="n_nac" style="display:none">{{ form.nacionalidad }}</div><br>
+                            {% if nacionalidades %}
+
+                            {% for i in nacionalidades %}
+                            {{ i.pais }}
+                            &nbsp;
+                            {% endfor %}
+
+                            {%endif%}
+
+
+
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group col-sm-4">
+                                <label>Tipo de doc. identificación : </label>
+                                <div id="tdi_">{{ form.tipo_documento_identidad }}</div>
+                                <a href="{{empleado.docu_ident_front.url}}" target="_blank">Ver frente / </a>
+                                <a href="" target="_blank" class="imgfrente">Cambiar</a>
+                                <a href="{{empleado.docu_ident_back.url}}" target="_blank">Ver atrás / </a>
+                                <a href="" target="_blank" class="imgatras">Cambiar</a>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label># pasaporte </label>
+                                {{ form.pasaporte }}
+                                {% if empleado.imagen_pasaporte %}
+                                <a href="{{empleado.imagen_pasaporte.url}}" target="_blank">Ver pasaporte / </a>
+                                <a href="" target="_blank" class="imgpas">Cambiar</a>
+                                {%else%}
+
+                                <a href="" target="_blank" class="imgpas">Agregar</a>
+
+                                {%endif%}
+
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label>Vencimiento :</label>
+                                {{ form.fecha_vencimiento_pasaporte }}
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group col-sm-4">
+                                <div id="img_frente" style="display:none">Frente:<br>{{ form.docu_ident_front }}</div>
+                                <div id="img_atras" style="display:none">Atrás:<br>{{ form.docu_ident_back }}</div>
+                            </div>
+                            <div class="form-group col-sm-4" id="img_pas" style="display:none">
+                                Pasaporte:<br>{{ form.imagen_pasaporte }}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="btns_2" style="display:none;">
+                        <button id="btncanNac" class="btn btn-success">Cancelar</button>
+                        <button id="btnactNac" class="btn btn-primary">Actualizar</button>
+                    </div>
+
+                </form>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock contenido %}
+
+{% block scripts %}
+  <script>
+    if(history.forward(1)){
+      location.replace( history.forward(1) );
+    }
+   document.onkeydown = function(e){
+    tecla = (document.all) ? e.keyCode : e.which;
+   // alert(tecla)
+    if (tecla == 116) {
+      return false;
+    }
+   }
+  </script>
+  
+  {% endblock scripts %}

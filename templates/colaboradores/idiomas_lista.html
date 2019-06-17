@@ -1,0 +1,25 @@
+{% for idioma in idiomas %}
+  <tr>
+    <td class="text-center" >{{ idioma.idioma }}</td>
+    <td class="text-center" >{{ idioma.idioma_porcentaje }}</td>
+    <td class="text-center" >
+    <button type="button"
+           onclick="edit_idioma({{idioma.id}})"
+            class="btn btn-warning btn-sm "
+            data-url="">
+        <span class="glyphicon glyphicon-pencil"></span> Editar
+      </button>
+    <button type="button"
+      class="btn btn-danger btn-sm btnDelete"
+      data-id="{{idioma.id}}"
+      data-reg="IDIOMA">
+      <span class="glyphicon glyphicon-trash" ></span> Borrar
+    </button>
+    </td>
+  </tr>
+{% empty %}
+
+  <tr>
+    <td colspan="7" class="text-center bg-warning">No existen idiomas agregados</td>
+  </tr>
+{% endfor %}

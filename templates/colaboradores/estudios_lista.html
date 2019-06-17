@@ -1,0 +1,25 @@
+{% for estudio in estudios %}
+  <tr>
+    <td class="text-center" >{{ estudio.estudios_tipo }}</td>
+    <td class="text-center" >{{ estudio.estudios_nombre }}</td>
+    <td class="text-center" >
+    <button type="button"
+           onclick="edit_estudio({{estudio.id}})"
+            class="btn btn-warning btn-sm "
+            data-url="">
+        <span class="glyphicon glyphicon-pencil"></span> Editar
+      </button>
+    <button type="button"
+      class="btn btn-danger btn-sm btnDelete"
+      data-id="{{estudio.id}}"
+      data-reg="ESTUDIO">
+      <span class="glyphicon glyphicon-trash" ></span> Borrar
+    </button>
+    </td>
+  </tr>
+{% empty %}
+
+  <tr>
+    <td colspan="7" class="text-center bg-warning">No existen estudios agregados</td>
+  </tr>
+{% endfor %}

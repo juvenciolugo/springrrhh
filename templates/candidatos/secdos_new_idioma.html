@@ -1,0 +1,79 @@
+<!-- Agregar  IDIOMA -->
+<div class="modal fade" id="addIdiomaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">AGREGAR IDIOMA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+              <form class="form-horizontal" id="frm_secdos_idiomas" method="post" role="form" action="{% url 'add-idioma' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input id="candId2_idi" name="candId2_idi" type="hidden" value="">                
+
+                <div class="modal-body">
+                        *Los campos enmarcados en rojo son obligatorios               
+                    <div class="form-group row">
+                      <div class="col-lg-4">
+                        <label>{{ form_idioma.idioma.label }} </label>
+                        {{ form_idioma.idioma }} 
+                      </div>
+                      <div class="col-lg-4">
+                       <label>{{ form_idioma.idioma_porcentaje.label }}</label>
+                       {{ form_idioma.idioma_porcentaje }}
+                      </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btn_add_idioma" class="btn btn-primary">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End of agregar IDIOMA modal-->
+
+<!-- EDITAR  IDIOMA -->
+<div class="modal fade" id="editIdiomaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">EDITAR IDIOMA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+              <form class="form-horizontal" id="frm_secdos_edit_idiomas" method="post" role="form" action="{% url 'edit-idioma' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input id="idi_id" name="idi_id" type="hidden" value="">  
+                  <input id="candId_editidioma" name="candId_editidioma" type="hidden" value="">     
+                  
+                <div class="modal-body">
+                        *Los campos enmarcados en rojo son obligatorios               
+                    <div class="form-group row">
+                      <div class="col-lg-4">
+                        <label>{{ form_editidioma.idioma.label }} </label>
+                        {{ form_editidioma.idioma }} 
+                      </div>
+                      <div class="col-lg-4">
+                       <label>{{ form_editidioma.idioma_porcentaje.label }}</label>
+                       {{ form_editidioma.idioma_porcentaje }}
+                      </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btn_edit_idi" class="btn btn-primary">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End of EDITAR IDIOMA modal-->
+
+
+
